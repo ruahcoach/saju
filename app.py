@@ -1108,8 +1108,13 @@ def page_saju():
     all_seun_reversed = list(range(max_age-1, -1, -1))  # 큰나이→작은나이
 
     seun_html = '<html><body style="margin:0;padding:0;background:transparent;overflow-y:hidden;">'
-    seun_html += '<style>html,body{overflow-y:hidden!important;overflow-x:hidden!important;}#seun-timeline{overflow-x:scroll!important;overflow-y:hidden!important;-webkit-overflow-scrolling:touch;}#seun-timeline::-webkit-scrollbar{height:5px;}#seun-timeline::-webkit-scrollbar-track{background:#ece8d8;border-radius:3px;}#seun-timeline::-webkit-scrollbar-thumb{background:#c8b87a;border-radius:3px;}</style>'
-    seun_html += '<div id="seun-timeline" style="overflow-x:scroll;overflow-y:hidden;-webkit-overflow-scrolling:touch;padding:2px 0 10px;margin:0;width:100%;">'
+    seun_html += '<style>html,body{overflow-y:hidden!important;overflow-x:hidden!important;}'
+    seun_html += '#seun-timeline{overflow-x:scroll!important;overflow-y:hidden!important;-webkit-overflow-scrolling:touch;}'
+    seun_html += '#seun-timeline::-webkit-scrollbar{height:8px;display:block!important;}'
+    seun_html += '#seun-timeline::-webkit-scrollbar-track{background:#ece8d8;border-radius:4px;}'
+    seun_html += '#seun-timeline::-webkit-scrollbar-thumb{background:#c8b87a;border-radius:4px;min-width:40px;}'
+    seun_html += '</style>'
+    seun_html += '<div id="seun-timeline" style="overflow-x:scroll;overflow-y:hidden;-webkit-overflow-scrolling:touch;padding:2px 0 4px;margin:0;width:100%;">'
     seun_html += '<div style="display:inline-flex;flex-wrap:nowrap;gap:2px;padding:0 4px;">'
 
     for age_i in all_seun_reversed:
@@ -1151,26 +1156,42 @@ def page_saju():
             f'<div style="width:26px;height:26px;border-radius:4px;background:{bg_j};color:{tc_j};display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;margin-top:1px;">{hj_sj}</div>'
             f'<div style="font-size:8px;color:#5a3e0a;margin-top:1px;white-space:nowrap">{six_j}</div>'
             '</div>'
-            f'<div style="font-size:8px;color:#6b5a3e;margin-top:1px;">{display_age}</div>'
             '</div>'
         )
 
     seun_html += '</div></div>'
+    # 스크롤 위치 표시 바 (스크롤 영역 밖)
+    seun_html += '<div style="margin:3px 8px 0;height:4px;background:#ece8d8;border-radius:2px;position:relative;">'
+    seun_html += '<div id="scroll-indicator" style="height:4px;background:#c8b87a;border-radius:2px;width:20%;position:absolute;left:0;transition:left 0.1s;"></div>'
+    seun_html += '</div>'
+    seun_html += '<div style="text-align:center;font-size:9px;color:#b0a080;margin-top:1px;">◀ 좌우로 밀어서 전체 세운 보기 ▶</div>'
 
-    # JS: 대운 구간 시작점으로 자동 스크롤 (중앙 정렬)
+    # JS: 대운 구간 시작점으로 자동 스크롤 + 스크롤 인디케이터 연동
     seun_html += '''<script>
     (function(){
         var el = document.getElementById('seun-range-start');
         var container = document.getElementById('seun-timeline');
+        var indicator = document.getElementById('scroll-indicator');
         if(el && container){
             var offset = el.offsetLeft - container.offsetLeft - (container.clientWidth / 2) + (el.offsetWidth * 5);
             container.scrollLeft = Math.max(0, offset);
+        }
+        if(container && indicator){
+            function updateIndicator(){
+                var ratio = container.scrollLeft / (container.scrollWidth - container.clientWidth);
+                var trackWidth = container.clientWidth - 16;
+                var thumbWidth = Math.max(trackWidth * 0.2, 30);
+                indicator.style.width = thumbWidth + 'px';
+                indicator.style.left = (ratio * (trackWidth - thumbWidth)) + 'px';
+            }
+            container.addEventListener('scroll', updateIndicator);
+            updateIndicator();
         }
     })();
     </script></body></html>'''
 
     import streamlit.components.v1 as components
-    components.html(seun_html, height=112, scrolling=True)
+    components.html(seun_html, height=116, scrolling=False)
 
     # ★ 아래: 현재 대운 구간 10개 나이 버튼 (월운 이동용)
     seun_range = []
