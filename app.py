@@ -263,7 +263,7 @@ def dayun_start_age(dt_solar, jie12_solar, forward):
     delta_days=(next_t-dt_solar).total_seconds()/86400.0 if forward else (dt_solar-prev_t).total_seconds()/86400.0
     return max(0,round_half_up(delta_days/3.0))
 
-def build_dayun_list(month_gidx, month_bidx, forward, start_age, count=10):
+def build_dayun_list(month_gidx, month_bidx, forward, start_age, count=11):
     dirv=1 if forward else -1; out=[]
     for i in range(1,count+1):
         g_i=(month_gidx+dirv*i)%10; b_i=(month_bidx+dirv*i)%12
@@ -919,13 +919,14 @@ def page_saju():
     if corr:
         st.markdown(render_correction_html(corr, eot), unsafe_allow_html=True)
 
-    # ★ ② 경계 경고 표시
-    warns = data.get('boundary_warns', [])
-    if warns:
-        warn_html = '<div class="boundary-warn">' + '<br>'.join(warns) + '</div>'
-        st.markdown(warn_html, unsafe_allow_html=True)
+    # ★ 경계 경고: 정밀검증 모드 OFF일 때만 표시 (체크 유도)
+    if not data.get('show_tst'):
+        warns = data.get('boundary_warns', [])
+        if warns:
+            warn_html = '<div class="boundary-warn">' + '<br>'.join(warns) + '</div>'
+            st.markdown(warn_html, unsafe_allow_html=True)
 
-    # ★ ③ 진태양시 비교 (정밀검증 모드)
+    # ★ 진태양시 비교: 정밀검증 모드 ON일 때만 표시
     if data.get('show_tst') and data.get('fp_wall'):
         dt_local = data.get('dt_local')
         dt_solar = data.get('dt_solar')
@@ -972,7 +973,7 @@ def page_saju():
     seun_range_disp=list(reversed(seun_range))
 
     seun_html='<div style="overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 0 2px;">'
-    seun_html+='<div style="display:inline-flex;flex-wrap:nowrap;gap:2px;padding:0 2px;">'
+    seun_html+='<div style="display:inline-flex;flex-wrap:nowrap;gap:3px;padding:0 2px;">'
     for age_i,sy,sg,sj in seun_range_disp:
         bg_g=GAN_BG.get(sg,"#888"); tc_g=gan_fg(sg)
         bg_j=BR_BG.get(sj,"#888"); tc_j=br_fg(sj)
@@ -983,11 +984,11 @@ def page_saju():
         bg_card='#d4c48a' if active else '#e8e4d8'
         display_age = age_i + 1
         seun_html+=(
-            f'<div style="display:flex;flex-direction:column;align-items:center;min-width:38px;border:{bdr};border-radius:8px;background:{bg_card};padding:3px 2px 2px;">'
+            f'<div style="display:flex;flex-direction:column;align-items:center;min-width:42px;border:{bdr};border-radius:8px;background:{bg_card};padding:3px 2px 2px;">'
             f'<div style="font-size:9px;color:#6b5a3e;margin-bottom:1px;white-space:nowrap">{sy}</div>'
             f'<div style="font-size:9px;color:#5a3e0a;margin-bottom:1px;white-space:nowrap">{six_g}</div>'
-            f'<div style="width:30px;height:30px;border-radius:5px;background:{bg_g};color:{tc_g};display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;">{hj_sg}</div>'
-            f'<div style="width:30px;height:30px;border-radius:5px;background:{bg_j};color:{tc_j};display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;margin-top:1px;">{hj_sj}</div>'
+            f'<div style="width:32px;height:32px;border-radius:5px;background:{bg_g};color:{tc_g};display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;">{hj_sg}</div>'
+            f'<div style="width:32px;height:32px;border-radius:5px;background:{bg_j};color:{tc_j};display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;margin-top:1px;">{hj_sj}</div>'
             f'<div style="font-size:9px;color:#5a3e0a;margin-top:1px;white-space:nowrap">{six_j}</div>'
             '</div>'
         )
@@ -1009,10 +1010,9 @@ def page_saju():
     gpt_url='https://chatgpt.com/g/g-68d90b2d8f448191b87fb7511fa8f80a-rua-myeongrisajusangdamsa'
     bottom_html = (
         '<div class="bottom-btns">'
-        f'<a href="{gpt_url}" target="_blank" class="bottom-btn-ai">🤖 AI 챗봇 무료상담</a>'
-        '</div>'
-        '<div style="text-align:center;margin-top:6px;font-size:11px;">'
-        '<a href="https://www.youtube.com/@psycologysalon" target="_blank" style="color:#8b6914;text-decoration:none;">🎥 2025 상담학박사 루아코치 유튜브</a>'
+        f'<a href="{gpt_url}" target="_blank" class="bottom-btn-ai">🤖 AI무료상담</a>'
+        '<a href="https://www.youtube.com/@psycologysalon" target="_blank" class="bottom-btn-saju" style="text-decoration:none;">🎥 명리심리 유튜브</a>'
+        '<a href="https://open.kakao.com/o/sWJUYGDh" target="_blank" class="bottom-btn-saju" style="text-decoration:none;">💬 오픈채팅방</a>'
         '</div>'
     )
     st.markdown(bottom_html, unsafe_allow_html=True)
@@ -1077,11 +1077,9 @@ def page_wolun():
     gpt_url='https://chatgpt.com/g/g-68d90b2d8f448191b87fb7511fa8f80a-rua-myeongrisajusangdamsa'
     bottom_html = (
         '<div class="bottom-btns">'
-        '<a href="https://open.kakao.com/o/sWJUYGDh" target="_blank" class="bottom-btn-saju" style="text-align:center;padding:12px 6px;text-decoration:none;">💬 이박사 오픈카카오톡</a>'
-        f'<a href="{gpt_url}" target="_blank" class="bottom-btn-ai">🤖 AI 챗봇 무료상담</a>'
-        '</div>'
-        '<div style="text-align:center;margin-top:6px;font-size:11px;">'
-        '<a href="https://www.youtube.com/@psycologysalon" target="_blank" style="color:#8b6914;text-decoration:none;">🎥 2025 상담학박사 루아코치 유튜브</a>'
+        f'<a href="{gpt_url}" target="_blank" class="bottom-btn-ai">🤖 AI무료상담</a>'
+        '<a href="https://www.youtube.com/@psycologysalon" target="_blank" class="bottom-btn-saju" style="text-decoration:none;">🎥 명리심리 유튜브</a>'
+        '<a href="https://open.kakao.com/o/sWJUYGDh" target="_blank" class="bottom-btn-saju" style="text-decoration:none;">💬 오픈채팅방</a>'
         '</div>'
     )
     st.markdown(bottom_html, unsafe_allow_html=True)
@@ -1181,8 +1179,9 @@ def page_ilun():
     gpt_url='https://chatgpt.com/g/g-68d90b2d8f448191b87fb7511fa8f80a-rua-myeongrisajusangdamsa'
     bottom_html = (
         '<div class="bottom-btns">'
-        '<div class="bottom-btn-saju" style="text-align:center;padding:12px 6px;">📊 내 사주 해석 보기</div>'
-        f'<a href="{gpt_url}" target="_blank" class="bottom-btn-ai">🤖 AI 챗봇 무료상담</a>'
+        f'<a href="{gpt_url}" target="_blank" class="bottom-btn-ai">🤖 AI무료상담</a>'
+        '<a href="https://www.youtube.com/@psycologysalon" target="_blank" class="bottom-btn-saju" style="text-decoration:none;">🎥 명리심리 유튜브</a>'
+        '<a href="https://open.kakao.com/o/sWJUYGDh" target="_blank" class="bottom-btn-saju" style="text-decoration:none;">💬 오픈채팅방</a>'
         '</div>'
     )
     st.markdown(bottom_html, unsafe_allow_html=True)
