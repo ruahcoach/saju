@@ -481,16 +481,135 @@ def get_nearby_jeolip(dt_solar):
 
 # ── 격(格) 카드 데이터 ──
 GYEOK_CARDS = [
-    {"slug":"geonrok","card_title":"체제건립 · 건록격","icon":"🏛️","one_liner":"세상을 더 나은 규칙과 교육으로 바꾸려는 '기반을 만드는 사람'","story":"당신은 혼란 속에서도 기준을 세우는 사람입니다. 무너진 질서를 그냥 두지 않고, 공부하고 정리하고 글과 말로 설득해요. 사람들이 안전해지려면 제도, 교육, 원칙이 필요하다고 믿기 때문에, 오늘도 조용히 초석을 다지고 있습니다. 당신이 추구하는 건 품격 있는 변화, 즉 흔들리지 않는 기반 위에서 세상을 바꾸는 일이에요.","strengths":["학습력과 정리력","말, 글로 설득하는 힘","윤리, 품격을 지키는 태도","장기전에서 버티는 꾸준함"],"growth_tips":["70% 준비되면 작은 실행부터","원칙을 말하기 전에 상대의 사정 한 문장 먼저","비판보다 대안으로 말하기"],"praise_keywords":["기반을 만든다","품격 있다","믿고 맡길 수 있다","정리력이 탁월하다","원칙 위의 따뜻함"],"keywords":["건록격","건록","월비격","월비"]},
-    {"slug":"yangin","card_title":"체제수호 · 양인격","icon":"🛡️","one_liner":"약자를 지키기 위해 몸으로 책임지는 '방패형 리더'","story":"당신은 위험을 보면 먼저 몸이 움직이는 사람입니다. 불의와 부조리를 그냥 넘기지 못하고, 누군가 다치면 내가 대신 막고 싶어져요. 그래서 개인의 힘을 키우게 돕거나, 필요하면 팀을 만들어 함께 버텨냅니다. 당신이 추구하는 건 보호와 의리입니다.","strengths":["강한 책임감","약자 보호 본능","팀을 지키는 헌신","위기 대응력"],"growth_tips":["도와주기 전에 스스로 할 수 있는 1단계부터 요청하기","의리=침묵이 아니라 건강한 경계","휴식도 책임의 일부로 일정에 넣기"],"praise_keywords":["든든하다","의리가 있다","지켜준다","리더십이 있다","끝까지 책임진다"],"keywords":["양인격","양인","월겁격","월겁"]},
-    {"slug":"sanggwan","card_title":"산업융합 · 상관격","icon":"🔧","one_liner":"규칙을 활용해 혁신을 만드는 '응용의 천재'","story":"당신은 정해진 틀만 따르면 답답해지는 사람입니다. 주변 환경을 빠르게 읽고, 있는 자원을 엮어서 새로운 방식을 만들어내요. 변화가 올 때 오히려 살아나고, 효율적인 길을 찾아내는 능력이 탁월합니다.","strengths":["임기응변과 적응력","아이디어를 현실로 바꾸는 응용력","혁신 추진력","효율 중심 사고"],"growth_tips":["아이디어는 한 장 요약+첫 실행까지","편법처럼 보일 땐 근거와 리스크를 먼저 공개","관계 갈등은 사실-감정-요청 순서로 말하기"],"praise_keywords":["센스 있다","응용력이 탁월하다","혁신적이다","문제 해결이 빠르다","길을 만든다"],"keywords":["상관격","상관"]},
-    {"slug":"sikshin","card_title":"연구개발 · 식신격","icon":"🧪","one_liner":"실험과 성과로 말하는 '꾸준한 빌더'","story":"당신은 해보면 알지라는 태도로 성장하는 사람입니다. 연구하고 만들고 개선하면서 실력을 쌓고, 결과로 증명하고 싶어해요. 주관적인 평가보다 객관적인 지표와 성과를 선호하고, 자유로운 몰입 환경에서 빛납니다.","strengths":["몰입과 실행","책임감 있는 생산성","학습, 실험, 개선 루프","객관적 판단"],"growth_tips":["일의 우선순위를 효과/시간 2축으로 정하기","성과 공유는 과정 1줄 + 결과 1줄로 짧게","사람 이슈도 시스템 개선으로 다루기"],"praise_keywords":["생산적이다","뭐든 척척 한다","실력이 있다","꾸준하다","결과로 증명한다"],"keywords":["식신격","식신"]},
-    {"slug":"jeongin","card_title":"교육행정 · 정인격","icon":"📚","one_liner":"지식과 기준으로 안정감을 주는 '정석형 멘토'","story":"당신은 정리된 지식에서 편안함을 얻는 사람입니다. 배운 것을 체계적으로 쌓고, 그 범위 안에서 정확히 해내는 데 강해요. 눈에 띄기보다 실속을 추구하고, 맡은 임무를 차분히 해결합니다.","strengths":["개념 정리/문서화","안정적인 수행력","기준을 지키는 신뢰","지식 전달 능력"],"growth_tips":["새로운 일은 작게 테스트로 안전하게 확장","기준을 말하기 전에 상대의 목표를 먼저 확인","정답보다 작동하는 해결책 1개를 먼저 제시"],"praise_keywords":["박학다식하다","정리 잘한다","일처리가 정확하다","믿음직하다","기준을 잡아준다"],"keywords":["정인격","정인"]},
-    {"slug":"pyeonin","card_title":"기획전략 · 편인격","icon":"🌙","one_liner":"상상과 공감으로 방향을 만드는 '의미 설계자'","story":"당신은 남들이 못 보는 가능성을 먼저 느끼는 사람입니다. 상상력과 감정의 깊이가 아이디어를 만들고, 사람의 고통을 그냥 지나치지 못해요. 구체화만 붙으면 엄청난 기획이 됩니다.","strengths":["창의적 기획","공감 기반 아이디어","미래 지향적 사고","깊은 통찰(감정/서사)"],"growth_tips":["아이디어는 1)목표 2)대상 3)첫 행동으로 쪼개기","현실 검증 파트너 1명을 정해 체크받기","감정 표현 뒤엔 구체적 요청을 붙이기"],"praise_keywords":["창의적이다","따뜻하다","상상력이 무한하다","의미를 만든다","사람을 살린다"],"keywords":["편인격","편인"]},
-    {"slug":"jeongjae","card_title":"실용경제 · 정재격","icon":"🧱","one_liner":"안정과 실속을 지키는 '현실 설계자'","story":"당신은 지속 가능함이 얼마나 중요한지 아는 사람입니다. 크게 흔들리지 않는 수입, 안정적인 시스템, 실용적인 선택을 선호해요. 내 사람에게는 책임감 있게 베풀지만, 신뢰가 쌓이기 전까지는 쉽게 마음을 열지 않습니다.","strengths":["현실 감각","지출/리스크 관리","지속 가능한 선택","책임 있는 보호 본능"],"growth_tips":["변화는 작은 실험으로만 도입","돈/시간은 가치 예산을 따로 배정","기회는 손실 한도를 정해두고 도전"],"praise_keywords":["한결같다","실속 있다","안정적이다","믿음직하다","관리 능력이 좋다"],"keywords":["정재격","정재"]},
-    {"slug":"pyeonjae","card_title":"혁신경영 · 편재격","icon":"🌍","one_liner":"판을 넓혀 기회를 만드는 '확장형 사업가'","story":"당신은 한 자리에서만 머무르면 답답해지는 사람입니다. 사람들과 함께 움직이며 기회를 찾고, 새로운 분야를 개척하는 데 에너지가 생겨요. 대외 활동에서 빛나고, 파트너십으로 성장을 만들려 합니다.","strengths":["도전과 확장성","네트워킹/협업","기회 포착","대외 감각(브랜딩/시장)"],"growth_tips":["동시에 벌리는 프로젝트는 2개까지만","수익/가치/리스크 3줄로 의사결정","파트너십은 역할, 기대, 정산을 문서로"],"praise_keywords":["진취적이다","도전적이다","확장성이 있다","호탕하다","판을 키운다"],"keywords":["편재격","편재"]},
-    {"slug":"jeonggwan","card_title":"원리운영 · 정관격","icon":"⚖️","one_liner":"규칙과 협동으로 조직을 살리는 '원칙형 운영자'","story":"당신은 조직이 굴러가려면 규칙과 시스템이 필요하다고 믿는 사람입니다. 원리원칙에서 안정감을 느끼고, 모두가 공정하게 움직이길 바래요. 행정, 운영, 제도 정비에 강하고, 조직의 신뢰를 지켜냅니다.","strengths":["원칙과 공정성","운영/행정 능력","책임감","협업 구조를 만드는 힘"],"growth_tips":["원칙 적용 전 예외 기준을 1개만 정해두기","사람 문제는 규정보다 합의부터","칭찬은 태도+영향까지 구체적으로"],"praise_keywords":["성실하다","믿고 맡길 수 있다","원칙적이다","조직을 살린다","공정하다"],"keywords":["정관격","정관"]},
-    {"slug":"pyeongwan","card_title":"관리감독 · 편관격","icon":"🦅","one_liner":"기준을 세워 구분하고 단속하는 '감독형 리더'","story":"당신은 흐릿한 상태를 싫어하고, 분명한 기준을 세우는 사람입니다. 조직의 경쟁력은 관리와 감독에서 나온다고 믿고, 역할, 위계, 규율을 선명하게 잡아줘요. 남들이 놓치는 문제를 빠르게 찾아내는 감별력이 강합니다.","strengths":["문제 탐지/감별력","위기 관리","규율 수립","결단력"],"growth_tips":["지적 전에 기대 기준을 먼저 공유","사람을 단속하기보다 행동을 교정하기","강한 메시지 뒤엔 반드시 출구(대안) 제공"],"praise_keywords":["특출나다","안목이 좋다","감별사다","결단력 있다","위기를 잡는다"],"keywords":["편관격","편관","중기격"]},
+    {"slug":"geonrok","card_title":"기반을 만드는 사람 · 건록격","icon":"🏛️",
+     "one_liner":"배우고 정리해서, 모두가 안심할 수 있는 기준을 만들어주는 사람",
+     "story_child":"이 아이는 뭔가 새로 알게 되면 꼭 정리하고 싶어하는 아이예요. 노트든 말이든, 자기만의 방식으로 갈무리해야 직성이 풀리죠. 이 아이에게는 '네가 정리한 거 정말 잘했다'는 칭찬이 큰 힘이 돼요. 스스로 배우고 정리하는 과정을 존중해주세요.",
+     "story_young":"당신은 뭔가 새로 배우면 그냥 넘기지 못하고 꼭 정리하는 사람이에요. 노트든 머릿속이든, 배운 걸 나만의 방식으로 갈무리해야 직성이 풀리죠. 지금 쌓고 있는 것들이 나중에 엄청난 자산이 돼요. 당신의 꾸준함이 미래의 기반입니다.",
+     "story_mature":"당신은 정리하고 기준을 세우는 일에 타고난 사람이에요. 지금까지 쌓아온 것이 있든 없든, 당신의 그 꼼꼼함과 꾸준함은 변하지 않는 강점이에요. 필요한 게 있으면 도움을 요청해도 괜찮고, 나눌 수 있는 게 있다면 그것도 좋아요. 당신 페이스대로 가면 돼요.",
+     "strengths":["정리하고 가르치는 능력이 뛰어나요","꾸준히 공부하고 성장해요","한번 맡으면 끝까지 해내요","사람들에게 안정감을 줘요"],
+     "growth_child":["완벽하게 정리될 때까지 시작을 못 하는 경우가 있어요. '일단 해보자'를 자주 말해주세요","자기 기준이 강한 편이라, 친구의 다른 방식도 괜찮다는 걸 알려주세요","혼자 하려는 경향이 있으니, 함께하는 경험을 많이 만들어주세요"],
+     "growth_young":["너무 완벽하게 준비하려다 시작이 늦어질 수 있어요. 70%면 충분해요!","내 기준이 확실한 만큼, 다른 사람의 방식도 존중하는 연습이 도움 돼요","혼자 다 하려 하지 말고, 함께하는 연습도 해보세요"],
+     "growth_mature":["새로운 방식이 낯설 수 있지만, 열린 마음으로 한번 들어보세요","오랜 경험에서 나온 원칙은 소중해요. 동시에 유연함도 큰 힘이에요","누군가에게 기준을 알려줄 때, 먼저 그 사람의 상황을 들어보면 더 좋아요"],
+     "best_environment":["내가 배운 걸 누군가에게 전할 수 있을 때","장기적으로 꾸준히 쌓아가는 일을 할 때","나의 기준과 원칙이 존중받는 환경에서"],
+     "praise_keywords":["믿고 맡길 수 있다","정리를 참 잘한다","품격이 있다","꾸준하다","함께하면 안심된다"],
+     "keywords":["건록격","건록","월비격","월비"]},
+
+    {"slug":"yangin","card_title":"사람을 지키는 사람 · 양인격","icon":"🛡️",
+     "one_liner":"힘든 사람을 보면 가만히 못 있는, 마음이 뜨거운 리더",
+     "story_child":"이 아이는 친구가 울면 먼저 다가가는 아이예요. 약한 친구를 괴롭히는 걸 보면 참지 못하고, 자기가 나서서 지키려 해요. 이 마음이 이 아이의 가장 큰 보물이에요. 다만 '너도 보호받을 자격이 있어'라는 말을 자주 해주세요.",
+     "story_young":"당신은 친구가 힘들면 '내가 해줄게'가 먼저 나오는 사람이에요. 불공평한 일을 보면 참지 못하고, 내 사람은 꼭 지켜주고 싶어하죠. 그 뜨거운 마음이 당신의 가장 큰 힘이에요. 다만 나 자신도 돌보는 것, 잊지 마세요.",
+     "story_mature":"당신은 주변 사람을 지키려는 마음이 누구보다 강한 사람이에요. 지금까지 얼마나 많은 걸 짊어져왔는지 당신이 제일 잘 알죠. 이제는 도움을 받는 것도 괜찮아요. 당신도 누군가에게 기대어 쉬어도 돼요. 그게 약한 게 아니에요.",
+     "strengths":["책임감이 아주 강해요","내 사람을 끝까지 지켜줘요","위기 상황에서 더 빛나요","함께하면 든든한 리더예요"],
+     "growth_child":["뭐든 자기가 해결하려 하니, '도움을 요청하는 것도 용기'라고 알려주세요","지는 걸 싫어할 수 있어요. 이기는 것보다 함께하는 가치를 알려주세요","에너지가 강한 아이라 운동이나 활동적인 놀이로 발산하게 해주세요"],
+     "growth_young":["도와주기 전에 '이건 내가 할 일인가?' 한번 생각해보세요","의리도 중요하지만, 나의 경계도 소중해요","쉬는 것도 책임의 일부예요. 번아웃 조심!"],
+     "growth_mature":["모든 걸 혼자 짊어지려 하지 않아도 돼요","도움을 받는 것도 용기예요. 자신을 돌보는 것이 먼저예요","가끔은 '내가 안 해도 괜찮다'고 내려놓는 연습을 해보세요"],
+     "best_environment":["팀이나 가족을 이끌어가는 역할을 맡았을 때","내가 지키고 싶은 사람이 있을 때","정의롭고 공정한 환경에서 일할 때"],
+     "praise_keywords":["정말 든든하다","의리가 있다","끝까지 책임진다","리더십이 있다","함께하면 힘이 난다"],
+     "keywords":["양인격","양인","월겁격","월겁"]},
+
+    {"slug":"sanggwan","card_title":"새 길을 여는 사람 · 상관격","icon":"🔧",
+     "one_liner":"남들이 안 되는 걸 되게 만드는, 응용력 넘치는 아이디어뱅크",
+     "story_child":"이 아이는 시키는 대로만 하면 답답해하는 아이예요. '왜 이렇게 해야 해?'라는 질문이 많고, 자기만의 방법을 찾으려 해요. 이건 반항이 아니라 창의력이에요! '네 방법도 한번 해볼까?'라고 말해주면 눈이 반짝거릴 거예요.",
+     "story_young":"당신은 같은 걸 봐도 '이걸 이렇게 하면 더 좋지 않아?'가 먼저 떠오르는 사람이에요. 정해진 틀만 따르면 답답하고, 나만의 방식으로 풀어야 직성이 풀리죠. 그 톡톡 튀는 생각이 당신의 무기예요!",
+     "story_mature":"당신은 어떤 상황에서든 방법을 찾아내는 사람이에요. 지금까지 수많은 문제를 나만의 방식으로 풀어왔죠. 상황이 좋든 어렵든, 그 응용력은 변하지 않는 당신의 재능이에요. 지금 필요한 건 그 재능을 어디에 쓸지 정하는 거예요.",
+     "strengths":["어떤 상황에서든 방법을 찾아내요","아이디어가 풍부해요","변화에 강하고 적응이 빨라요","효율적인 길을 잘 찾아요"],
+     "growth_child":["'왜?'라는 질문을 귀찮아하지 말고, 함께 답을 찾아가 주세요","규칙을 어기는 게 아니라 다르게 생각하는 거예요. 그 차이를 알려주세요","아이디어를 직접 시도해볼 기회를 많이 만들어주세요"],
+     "growth_young":["좋은 아이디어는 실행해야 빛나요. 작게라도 시작해보세요","내 방식이 최고라는 생각이 들 때, 다른 의견도 한번 들어보세요","'나는 맞고 너는 틀려'보다 '서로 방식이 다를 뿐'이라고 생각해보세요"],
+     "growth_mature":["다른 사람의 서툰 시도에도 격려를 해주면 좋아요","'내가 해봤는데'보다 '해봐, 응원할게'가 더 큰 힘이 돼요","가끔은 정해진 방식대로 하는 것도 마음이 편할 수 있어요"],
+     "best_environment":["자유롭게 아이디어를 낼 수 있을 때","새로운 시도를 환영하는 분위기에서","다양한 사람들과 협업할 때"],
+     "praise_keywords":["센스가 좋다","문제 해결이 빠르다","응용력이 탁월하다","혁신적이다","길을 만들어낸다"],
+     "keywords":["상관격","상관"]},
+
+    {"slug":"sikshin","card_title":"묵묵히 만드는 사람 · 식신격","icon":"🧪",
+     "one_liner":"말보다 결과로 보여주는, 꾸준한 실력파",
+     "story_child":"이 아이는 관심 있는 걸 찾으면 놀라울 정도로 집중하는 아이예요. 조용히 혼자 만들고, 실험하고, 반복하면서 실력을 키워가요. '빨리빨리' 재촉하기보다 '천천히 해도 괜찮아'라고 말해주세요. 이 아이는 자기 속도로 갈 때 가장 잘해요.",
+     "story_young":"당신은 '직접 해봐야 안다'는 마음으로 하나씩 배워가는 사람이에요. 화려한 말보다 실력으로 보여주고 싶고, 조용히 몰입할 때 가장 행복하죠. 지금 쌓고 있는 실력이 나중에 엄청난 결과를 만들어낼 거예요.",
+     "story_mature":"당신은 묵묵히 쌓아가는 것의 가치를 아는 사람이에요. 결과가 당장 보이지 않더라도, 당신의 꾸준함은 사라지지 않아요. 지금 상황이 어떻든, 당신이 가진 실력과 경험은 진짜예요. 자신을 믿어도 돼요.",
+     "strengths":["한 가지에 깊이 몰입해요","결과로 증명하는 실력파예요","꾸준하게 성장해요","맡은 일을 책임감 있게 해내요"],
+     "growth_child":["이 아이만의 속도가 있어요. 다른 아이와 비교하지 말아주세요","혼자 하는 걸 좋아하지만, 가끔 함께하는 기쁨도 알려주세요","완성하지 못해도 괜찮다고 말해주세요. 과정도 충분히 가치 있어요"],
+     "growth_young":["혼자 다 하려 하지 말고, 도움을 요청하는 것도 실력이에요","완벽하지 않아도 중간 결과를 공유해보세요. 피드백이 성장을 빠르게 해요","가끔은 쉬어가면서 하는 게 더 좋은 결과를 만들어요"],
+     "growth_mature":["당장 성과가 안 보여도, 당신의 실력은 사라지지 않아요","완벽하지 않아도 괜찮아요. 있는 그대로도 충분해요","이제는 성과만큼, 즐기는 것도 자신에게 허락해주세요"],
+     "best_environment":["방해받지 않고 집중할 수 있을 때","내 전문성을 인정받는 환경에서","충분한 시간을 갖고 일할 수 있을 때"],
+     "praise_keywords":["실력이 있다","뭐든 척척 해낸다","꾸준하다","믿을 수 있다","결과로 말한다"],
+     "keywords":["식신격","식신"]},
+
+    {"slug":"jeongin","card_title":"든든한 길잡이 · 정인격","icon":"📚",
+     "one_liner":"아는 것을 나누며 사람들에게 방향을 알려주는 따뜻한 멘토",
+     "story_child":"이 아이는 새로 배운 걸 동생이나 친구에게 설명하는 걸 좋아하는 아이예요. 차분하고 꼼꼼해서 실수가 적고, 선생님한테 신뢰를 받기 쉬워요. '네가 알려준 거 덕분에 도움이 됐어'라는 말이 이 아이에겐 최고의 칭찬이에요.",
+     "story_young":"당신은 새로운 걸 배우면 깔끔하게 정리하고, 친구에게 '이거 이렇게 하면 돼!'라고 알려주는 걸 잘해요. 차분하고 꼼꼼해서 실수가 적고, 주변에서 신뢰를 받아요. 지금 쌓고 있는 지식이 나중에 가장 큰 무기가 될 거예요.",
+     "story_mature":"당신은 차분하게 정리하고 방향을 잡아주는 데 타고난 사람이에요. 지금까지 배워온 것들이 많든 적든, 그 꼼꼼함은 변하지 않는 당신의 강점이에요. 새로운 걸 배우는 데 늦은 나이는 없어요. 궁금한 게 있으면 언제든 시작해도 괜찮아요.",
+     "strengths":["복잡한 것도 쉽게 설명해요","차분하고 꼼꼼해요","사람들에게 방향을 잡아줘요","한번 맡으면 정확하게 해내요"],
+     "growth_child":["새로운 것에 겁을 낼 수 있어요. '틀려도 괜찮아'를 자주 말해주세요","정답만 고집할 수 있으니, 여러 답이 있을 수 있다는 걸 알려주세요","아는 것을 자랑하지 않고 나누는 법을 가르쳐주세요"],
+     "growth_young":["알고 있는 것에만 머물지 말고, 새로운 분야에도 도전해보세요","정답을 알려주기보다, 함께 찾아가는 것도 좋은 방법이에요","완벽하게 알아야 말할 수 있다는 생각을 조금 내려놓아보세요"],
+     "growth_mature":["세상이 빠르게 변해도, 배우려는 마음만 있으면 충분해요","모르는 게 있어도 괜찮아요. 그게 부끄러운 일이 아니에요","가르칠 때 '내가 맞다'보다 '너는 어떻게 생각해?'를 먼저 물어보면 더 좋아요"],
+     "best_environment":["누군가를 가르치거나 도울 수 있을 때","체계적으로 일할 수 있는 환경에서","나의 지식이 가치를 인정받을 때"],
+     "praise_keywords":["아는 게 정말 많다","설명을 참 잘한다","꼼꼼하다","믿음직하다","함께하면 배울 게 많다"],
+     "keywords":["정인격","정인"]},
+
+    {"slug":"pyeonin","card_title":"가능성을 보는 사람 · 편인격","icon":"🌙",
+     "one_liner":"남들이 못 보는 것을 먼저 느끼고, 새로운 의미를 만들어내는 사람",
+     "story_child":"이 아이는 상상의 세계가 풍부한 아이예요. 혼자 공상에 빠져 있는 것처럼 보여도, 머릿속에서는 놀라운 이야기가 펼쳐지고 있어요. '뭐 하고 있어?'보다 '무슨 생각 해?'라고 물어봐주세요. 이 아이의 감수성은 정말 큰 재능이에요.",
+     "story_young":"당신은 같은 상황에서도 다른 사람들이 보지 못하는 가능성을 느끼는 사람이에요. 상상력이 풍부하고 감수성이 깊어서, 당신의 아이디어에는 사람 마음을 움직이는 힘이 있어요. 그 감각을 믿고 키워가세요!",
+     "story_mature":"당신은 남들이 못 보는 것을 느끼는 사람이에요. 그 직관과 감각은 지금도 여전해요. 상황이 어떻든, 당신의 그 깊은 감수성은 사라지지 않는 재능이에요. 필요하면 그 감각을 다시 꺼내 써도 돼요. 아직 늦지 않았어요.",
+     "strengths":["상상력과 직관이 뛰어나요","사람의 마음을 잘 읽어요","의미 있는 것을 만들어내요","남들이 못 보는 것을 먼저 봐요"],
+     "growth_child":["공상이 많다고 혼내지 말아주세요. 그게 이 아이의 창의력이에요","현실과 상상의 균형을 잡아주면 좋아요. '그걸 어떻게 만들어볼까?'라고 물어봐주세요","감정 표현을 잘 하게 도와주세요. '지금 기분이 어때?'를 자주 물어봐주세요"],
+     "growth_young":["좋은 아이디어가 떠오르면 바로 적어두세요. 실행까지 연결하는 연습이 필요해요","상상만 하지 말고, 현실적인 첫 걸음부터 떼어보세요","감정을 표현한 뒤에 '그래서 이렇게 해줘'라는 구체적 요청을 붙여보세요"],
+     "growth_mature":["직관을 믿되, 가끔은 현실적인 확인도 함께 해보세요","혼자만의 세계에 너무 오래 있지 말고, 사람들과 이야기하는 시간을 가져보세요","당신의 감각은 여전해요. 자신감을 가지셔도 돼요"],
+     "best_environment":["자유롭게 상상하고 기획할 수 있을 때","감성을 존중하는 사람들과 함께할 때","새로운 시도에 열려 있는 환경에서"],
+     "praise_keywords":["창의적이다","따뜻하다","상상력이 놀랍다","의미를 만든다","영감을 준다"],
+     "keywords":["편인격","편인"]},
+
+    {"slug":"jeongjae","card_title":"살림을 잘하는 사람 · 정재격","icon":"🧱",
+     "one_liner":"현실적이고 알뜰하게, 오래가는 안정을 만들어가는 사람",
+     "story_child":"이 아이는 또래보다 현실적이고 야무진 편이에요. 용돈을 아껴 모으거나, 물건을 아끼는 모습을 보일 거예요. '살림 잘하겠다'는 칭찬이 이 아이에겐 뿌듯한 말이에요. 다만 가끔은 '써도 괜찮아'라는 말도 해주세요.",
+     "story_young":"당신은 또래보다 현실적이고 알뜰한 편이에요. 돈이든 시간이든 낭비하지 않고, 소중한 것을 잘 지키죠. 아직 젊지만 그 안정감이 주변 사람들에게 신뢰를 줘요. 가끔은 새로운 도전도 해보면 더 넓은 세상이 보일 거예요.",
+     "story_mature":"당신은 현실 감각이 뛰어난 사람이에요. 상황이 좋든 어렵든, 소중한 것을 지키고 관리하는 능력은 변하지 않는 당신의 강점이에요. 지금 가진 것이 많든 적든, 당신의 알뜰함과 책임감은 진짜 실력이에요.",
+     "strengths":["현실 감각이 뛰어나요","소중한 것을 잘 지켜요","계획적이고 알뜰해요","내 사람을 책임감 있게 돌봐요"],
+     "growth_child":["아끼는 것도 좋지만, 나누는 기쁨도 알려주세요","새로운 것에 겁을 낼 수 있어요. 작은 모험을 함께 해보세요","물질적인 것 외에 감정 표현도 중요하다는 걸 알려주세요"],
+     "growth_young":["너무 안전한 것만 고르다 보면 기회를 놓칠 수 있어요. 가끔은 모험도!","모든 걸 혼자 관리하려 하지 말고, 믿을 수 있는 사람에게 맡겨보세요","의미 있는 곳에 쓰는 것도 투자예요"],
+     "growth_mature":["지금 가진 것의 가치를 스스로 인정해주세요","변화가 두려울 수 있지만, 작은 것부터 시도해보는 건 괜찮아요","가끔은 계획 없이 즉흥적으로 해보는 것도 마음이 편해질 수 있어요"],
+     "best_environment":["안정적으로 쌓아갈 수 있는 일을 할 때","내가 관리하고 운영하는 역할을 맡았을 때","노력한 만큼 결과가 돌아오는 환경에서"],
+     "praise_keywords":["한결같다","살림을 잘한다","안정적이다","믿음직하다","알뜰하다"],
+     "keywords":["정재격","정재"]},
+
+    {"slug":"pyeonjae","card_title":"세상을 넓히는 사람 · 편재격","icon":"🌍",
+     "one_liner":"새로운 사람, 새로운 기회를 찾아 세상을 넓혀가는 사람",
+     "story_child":"이 아이는 새로운 친구를 사귀는 걸 좋아하고, 모르는 곳에 가는 걸 신나해하는 아이예요. 에너지가 넘쳐서 가만히 있으면 답답해하죠. '여기저기 다니지 말고'보다 '오늘은 어디 가볼까?'가 이 아이에겐 더 좋은 말이에요.",
+     "story_young":"당신은 같은 자리에만 있으면 답답한 사람이에요. 새로운 사람, 새로운 경험, 더 넓은 세상이 당신을 설레게 하죠. 그 에너지가 당신의 가장 큰 매력이에요!",
+     "story_mature":"당신은 새로운 것을 찾아 움직이는 에너지가 있는 사람이에요. 지금 상황이 어떻든, 그 도전 정신은 사라지지 않아요. 다시 시작하고 싶다면 시작해도 돼요. 당신의 에너지는 나이와 상관없이 빛나요.",
+     "strengths":["사람을 모으고 연결하는 힘이 있어요","새로운 기회를 잘 찾아요","도전을 두려워하지 않아요","함께하면 에너지가 넘쳐요"],
+     "growth_child":["여러 가지를 동시에 하려 할 수 있어요. '하나만 먼저 끝내볼까?'라고 도와주세요","시작은 잘하지만 마무리가 약할 수 있어요. 끝까지 하는 습관을 길러주세요","가까운 사람에게도 관심을 쏟는 연습을 시켜주세요"],
+     "growth_young":["동시에 너무 많은 일을 벌리지 말고, 2~3개에 집중해보세요","시작하는 것만큼 마무리하는 것도 중요해요","가까운 사람에게도 관심을 쏟아주세요"],
+     "growth_mature":["새로 시작하는 것도 좋고, 이미 가진 것을 돌보는 것도 좋아요","에너지를 쓸 곳을 정할 때, 정말 중요한 것 2~3개에 집중해보세요","때로는 멈춰서 쉬는 것도 다음 도전을 위한 준비예요"],
+     "best_environment":["다양한 사람들을 만날 수 있을 때","새로운 분야에 도전할 기회가 있을 때","자유롭게 움직이며 일할 수 있는 환경에서"],
+     "praise_keywords":["진취적이다","도전적이다","에너지가 넘친다","사람을 모은다","세상을 넓힌다"],
+     "keywords":["편재격","편재"]},
+
+    {"slug":"jeonggwan","card_title":"함께 만드는 사람 · 정관격","icon":"⚖️",
+     "one_liner":"모두가 공정하게 잘 지낼 수 있도록 조율하는 조화의 운영자",
+     "story_child":"이 아이는 놀이할 때도 규칙을 중요하게 생각하는 아이예요. 누가 새치기하면 '그건 안 돼!'라고 말하고, 모두가 공평하길 바라요. 이 아이의 정의감을 칭찬해주세요. 다만 '규칙보다 마음이 먼저일 때도 있어'라는 것도 알려주세요.",
+     "story_young":"당신은 불공평한 걸 보면 마음이 불편한 사람이에요. 모두가 공정하게 대우받길 바라고, 자연스럽게 '중재자' 역할을 맡게 되죠. 성실하고 책임감 있는 당신은 어디서든 신뢰를 받아요.",
+     "story_mature":"당신은 사람들 사이에서 균형을 잡아주는 사람이에요. 지금까지 얼마나 많은 조율을 해왔는지 당신이 제일 잘 알죠. 상황이 어떻든, 당신의 공정함과 성실함은 변하지 않는 강점이에요. 지치면 쉬어가도 괜찮아요.",
+     "strengths":["공정하고 균형 잡힌 시각이 있어요","사람들 사이를 잘 조율해요","맡은 일에 성실해요","함께 일하기 편안한 사람이에요"],
+     "growth_child":["규칙을 너무 엄격하게 적용하면 친구들이 부담스러워할 수 있어요. 유연함도 알려주세요","'틀렸어!'보다 '이렇게 하면 어때?'로 말하는 연습을 도와주세요","완벽하지 않아도 괜찮다는 걸 자주 말해주세요"],
+     "growth_young":["규칙을 지키는 것도 중요하지만, 예외도 있다는 걸 기억하세요","가끔은 원칙보다 사람의 마음을 먼저 읽어보세요","완벽한 공정함은 없어요. 최선을 다하는 것으로 충분해요"],
+     "growth_mature":["오랜 시간 지켜온 기준은 소중해요. 동시에 시대에 맞게 유연해져도 괜찮아요","누군가에게 규칙을 알려줄 때, 먼저 이유를 설명해주면 더 좋아요","가끔은 규칙 밖에서 쉬어가는 것도 필요해요. 자신에게 너그러워지세요"],
+     "best_environment":["팀이나 조직을 운영하는 역할을 맡았을 때","공정함이 중요한 환경에서","서로 협력하며 성과를 내는 분위기에서"],
+     "praise_keywords":["성실하다","공정하다","함께하면 편하다","조직을 살린다","믿고 맡길 수 있다"],
+     "keywords":["정관격","정관"]},
+
+    {"slug":"pyeongwan","card_title":"핵심을 꿰뚫는 사람 · 편관격","icon":"🦅",
+     "one_liner":"남들이 놓치는 것을 찾아내고, 흐름을 바로잡는 날카로운 눈",
+     "story_child":"이 아이는 눈치가 빠르고 관찰력이 뛰어난 아이예요. 뭔가 이상하면 바로 알아차리고, '이건 왜 이래?'라고 물어요. 그 날카로움이 이 아이의 재능이에요. 다만 지적하기 전에 상대방 기분도 생각하는 법을 알려주세요.",
+     "story_young":"당신은 뭔가 이상하면 바로 알아차리는 사람이에요. '이건 좀 아닌데?'를 빠르게 감지하고, 문제를 정면으로 마주해요. 그 날카로운 눈이 팀에서 빛을 발하죠!",
+     "story_mature":"당신은 핵심을 정확히 짚어내는 사람이에요. 그 안목과 판단력은 지금도 여전해요. 상황이 좋든 어렵든, 문제를 파악하는 능력은 변하지 않는 당신의 강점이에요. 지금 필요한 건 그 눈을 어디에 쓸지 정하는 거예요.",
+     "strengths":["문제를 빠르게 찾아내요","과감한 결단력이 있어요","위기에서 더 빛나는 사람이에요","핵심을 정확히 짚어요"],
+     "growth_child":["지적하기 전에 '어떻게 말하면 좋을까?' 생각하는 연습을 시켜주세요","사람을 평가하지 않고 상황을 보는 법을 알려주세요","강한 에너지를 건강하게 쓸 수 있도록 운동이나 활동을 권해주세요"],
+     "growth_young":["지적하기 전에 '어떻게 말하면 잘 전달될까?' 한번 생각해보세요","사람을 평가하기보다 상황에 집중해보세요","강한 말 뒤에 대안을 함께 제시하면 훨씬 좋아요"],
+     "growth_mature":["직관은 여전히 정확해요. 다만 설명을 곁들이면 더 설득력이 있어요","누군가를 가르칠 때 '왜 안 되는지'보다 '이렇게 하면 된다'를 먼저 알려주면 좋아요","가끔은 눈감아주는 것도 여유예요. 자신에게도 너그러워지세요"],
+     "best_environment":["내 판단과 결정이 존중받을 때","빠르게 변하는 환경에서 방향을 잡을 때","명확한 목표가 있는 프로젝트를 이끌 때"],
+     "praise_keywords":["안목이 좋다","결단력 있다","핵심을 짚는다","위기를 잡는다","특출나다"],
+     "keywords":["편관격","편관","중기격"]},
 ]
 
 def find_geok_card(geok_name):
@@ -668,7 +787,7 @@ def render_saju_table(fp, ilgan):
     html+='</tr></tbody></table></div>'
     return html
 
-def render_geok_card_html(card, show_detail=False):
+def render_geok_card_html(card, show_detail=False, user_age=30):
     if not card: return ''
     icon_title = f'{card["icon"]} {card["card_title"]}'
     front = (
@@ -680,18 +799,34 @@ def render_geok_card_html(card, show_detail=False):
     )
     if not show_detail:
         return front
+    # 3구간: ~19세(아이) / 20~44세(청년) / 45세~(중년이상)
+    if user_age <= 19:
+        tier = "child"
+    elif user_age <= 44:
+        tier = "young"
+    else:
+        tier = "mature"
+    story = card.get(f"story_{tier}", card.get("story_young",""))
+    growth = card.get(f"growth_{tier}", card.get("growth_young",[]))
+    lbl_str = "💪 나의 강점"
+    lbl_grow = "🌱 알아두면 좋은 점"
+    lbl_env = "✨ 이런 환경에서 빛나요"
+    lbl_praise = "🎉 나를 표현하는 말"
     strengths_html = ''.join([f'<span class="geok-tag">✦ {s}</span>' for s in card["strengths"]])
-    tips_html = ''.join([f'<li style="margin-bottom:4px;">{t}</li>' for t in card["growth_tips"]])
+    growth_html = ''.join([f'<li style="margin-bottom:4px;">{t}</li>' for t in growth])
+    env_html = ''.join([f'<li style="margin-bottom:4px;">{t}</li>' for t in card.get("best_environment", [])])
     praise_html = ''.join([f'<span class="geok-tag" style="background:#e8f8e8;color:#2a6a2a;border-color:#6ab46a;">✧ {p}</span>' for p in card["praise_keywords"]])
     detail = (
         '<div class="geok-card-detail">'
         f'<div style="font-size:15px;font-weight:900;color:#8b4513;margin-bottom:8px;">{icon_title}</div>'
-        f'<div style="font-size:12px;margin-bottom:10px;line-height:1.7;color:#3a2a14;">{card["story"]}</div>'
-        '<div style="font-size:12px;font-weight:bold;color:#8b6914;margin-bottom:4px;">💪 강점</div>'
+        f'<div style="font-size:12px;margin-bottom:10px;line-height:1.7;color:#3a2a14;">{story}</div>'
+        f'<div style="font-size:12px;font-weight:bold;color:#8b6914;margin-bottom:4px;">{lbl_str}</div>'
         f'<div style="margin-bottom:10px;">{strengths_html}</div>'
-        '<div style="font-size:12px;font-weight:bold;color:#8b6914;margin-bottom:4px;">🌱 성장 팁</div>'
-        f'<ul style="margin:0 0 10px;padding-left:18px;font-size:11px;color:#2c2416;">{tips_html}</ul>'
-        '<div style="font-size:12px;font-weight:bold;color:#2a6a2a;margin-bottom:4px;">🎉 칭찬 키워드</div>'
+        f'<div style="font-size:12px;font-weight:bold;color:#c46014;margin-bottom:4px;">{lbl_grow}</div>'
+        f'<ul style="margin:0 0 10px;padding-left:18px;font-size:11px;color:#5a3a14;">{growth_html}</ul>'
+        f'<div style="font-size:12px;font-weight:bold;color:#8b6914;margin-bottom:4px;">{lbl_env}</div>'
+        f'<ul style="margin:0 0 10px;padding-left:18px;font-size:11px;color:#2c2416;">{env_html}</ul>'
+        f'<div style="font-size:12px;font-weight:bold;color:#2a6a2a;margin-bottom:4px;">{lbl_praise}</div>'
         f'<div>{praise_html}</div>'
         '</div>'
     )
@@ -913,27 +1048,6 @@ def page_saju():
     )
     st.markdown(geok_box_html, unsafe_allow_html=True)
 
-    # ★ ① 보정값 상세 표시
-    corr = data.get('corr_detail')
-    eot = data.get('eot_min', 0)
-    if corr:
-        st.markdown(render_correction_html(corr, eot), unsafe_allow_html=True)
-
-    # ★ 경계 경고: 정밀검증 모드 OFF일 때만 표시 (체크 유도)
-    if not data.get('show_tst'):
-        warns = data.get('boundary_warns', [])
-        if warns:
-            warn_html = '<div class="boundary-warn">' + '<br>'.join(warns) + '</div>'
-            st.markdown(warn_html, unsafe_allow_html=True)
-
-    # ★ 진태양시 비교: 정밀검증 모드 ON일 때만 표시
-    if data.get('show_tst') and data.get('fp_wall'):
-        dt_local = data.get('dt_local')
-        dt_solar = data.get('dt_solar')
-        fp_wall = data.get('fp_wall')
-        if dt_local and dt_solar:
-            st.markdown(render_tst_compare_html(dt_local, dt_solar, fp_wall, fp), unsafe_allow_html=True)
-
     daeun_rev=list(reversed(daeun))
     cols_du=st.columns(len(daeun))
     for ci,col in enumerate(cols_du):
@@ -973,7 +1087,7 @@ def page_saju():
     seun_range_disp=list(reversed(seun_range))
 
     seun_html='<div style="overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 0 2px;">'
-    seun_html+='<div style="display:inline-flex;flex-wrap:nowrap;gap:3px;padding:0 2px;">'
+    seun_html+='<div style="display:inline-flex;flex-wrap:nowrap;gap:2px;padding:0 2px;">'
     for age_i,sy,sg,sj in seun_range_disp:
         bg_g=GAN_BG.get(sg,"#888"); tc_g=gan_fg(sg)
         bg_j=BR_BG.get(sj,"#888"); tc_j=br_fg(sj)
@@ -984,11 +1098,11 @@ def page_saju():
         bg_card='#d4c48a' if active else '#e8e4d8'
         display_age = age_i + 1
         seun_html+=(
-            f'<div style="display:flex;flex-direction:column;align-items:center;min-width:42px;border:{bdr};border-radius:8px;background:{bg_card};padding:3px 2px 2px;">'
+            f'<div style="display:flex;flex-direction:column;align-items:center;min-width:38px;border:{bdr};border-radius:8px;background:{bg_card};padding:3px 2px 2px;">'
             f'<div style="font-size:9px;color:#6b5a3e;margin-bottom:1px;white-space:nowrap">{sy}</div>'
             f'<div style="font-size:9px;color:#5a3e0a;margin-bottom:1px;white-space:nowrap">{six_g}</div>'
-            f'<div style="width:32px;height:32px;border-radius:5px;background:{bg_g};color:{tc_g};display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;">{hj_sg}</div>'
-            f'<div style="width:32px;height:32px;border-radius:5px;background:{bg_j};color:{tc_j};display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;margin-top:1px;">{hj_sj}</div>'
+            f'<div style="width:30px;height:30px;border-radius:5px;background:{bg_g};color:{tc_g};display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;">{hj_sg}</div>'
+            f'<div style="width:30px;height:30px;border-radius:5px;background:{bg_j};color:{tc_j};display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;margin-top:1px;">{hj_sj}</div>'
             f'<div style="font-size:9px;color:#5a3e0a;margin-top:1px;white-space:nowrap">{six_j}</div>'
             '</div>'
         )
@@ -1007,6 +1121,14 @@ def page_saju():
                     st.session_state.page='wolun'
                     st.rerun()
 
+    # ★ 사용법 안내
+    st.markdown(
+        '<div style="text-align:center;font-size:11px;color:#9a8a6a;margin:6px 0 4px;line-height:1.5;">'
+        '💡 <b>년도/나이</b> 버튼 → 월운 보기 · 월운에서 <b>월</b> 버튼 → 일운(달력) 보기'
+        '</div>',
+        unsafe_allow_html=True
+    )
+
     gpt_url='https://chatgpt.com/g/g-68d90b2d8f448191b87fb7511fa8f80a-rua-myeongrisajusangdamsa'
     bottom_html = (
         '<div class="bottom-btns">'
@@ -1016,15 +1138,36 @@ def page_saju():
         '</div>'
     )
     st.markdown(bottom_html, unsafe_allow_html=True)
-    show_interp = st.session_state.get('show_saju_interp', False)
-    btn_label = '▲ 내 사주 해석 닫기' if show_interp else '📊 내 사주 해석 보기'
-    if st.button(btn_label, key='show_saju_interp_btn', use_container_width=True):
-        st.session_state['show_saju_interp'] = not show_interp
-        st.rerun()
-    if show_interp:
+
+    # ★ 내 사주 해석 보기 (expander)
+    with st.expander("📊 내 사주 해석 보기", expanded=False):
+        # ① 격 카드 상세 (강점/성장팁/칭찬)
         geok_card2 = find_geok_card(geok)
         if geok_card2:
-            st.markdown(render_geok_card_html(geok_card2, show_detail=True), unsafe_allow_html=True)
+            from datetime import date as _d
+            user_age = _d.today().year - birth_year
+            st.markdown(render_geok_card_html(geok_card2, show_detail=True, user_age=user_age), unsafe_allow_html=True)
+
+        # ② 법정시 / 보정값 상세
+        corr = data.get('corr_detail')
+        eot = data.get('eot_min', 0)
+        if corr:
+            st.markdown('<div class="sec-title">🕐 시간 보정 상세</div>', unsafe_allow_html=True)
+            st.markdown(render_correction_html(corr, eot), unsafe_allow_html=True)
+
+        # ③ 경계 경고 (해당될 때만)
+        warns = data.get('boundary_warns', [])
+        if warns:
+            warn_html = '<div class="boundary-warn">' + '<br>'.join(warns) + '</div>'
+            st.markdown(warn_html, unsafe_allow_html=True)
+
+        # ④ 진태양시 비교 (정밀검증 모드 ON일 때만)
+        if data.get('show_tst') and data.get('fp_wall'):
+            dt_local = data.get('dt_local')
+            dt_solar = data.get('dt_solar')
+            fp_wall = data.get('fp_wall')
+            if dt_local and dt_solar:
+                st.markdown(render_tst_compare_html(dt_local, dt_solar, fp_wall, fp), unsafe_allow_html=True)
 
 def page_wolun():
     data=st.session_state.saju_data
