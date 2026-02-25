@@ -1063,55 +1063,103 @@ def page_saju():
                 st.session_state.page='saju'
                 st.rerun()
 
+
     sel_su=st.session_state.sel_seun
     seun=data["seun"]
     du_item=daeun[sel_du]
     du_start=du_item['start_age']
     birth_y=data['birth'][0]
+
+    # 현재 대운 구간 범위
     if sel_du==0: seun_age_start=0
     else: seun_age_start=du_start
     seun_age_end=du_start+9
-    seun_range=[]
-    for age_i in range(seun_age_start, seun_age_end+1):
-        if age_i < len(seun):
-            sy,sg,sj=seun[age_i]
-            seun_range.append((age_i,sy,sg,sj))
-    seun_range_disp=list(reversed(seun_range))
 
-    # 세운: 대운과 동일한 11컬럼 그리드, 오른쪽 정렬
-    n_du=len(daeun)
-    n_su=len(seun_range_disp)
-    empty_cols=n_du - n_su
-    cols_seun=st.columns(n_du)
-    for ci in range(n_du):
-        si = ci - empty_cols
-        if si < 0 or si >= n_su:
+    # ★ 전체 세운 타임라인 (오른쪽→왼쪽, 1세가 오른쪽)
+    max_age = min(len(seun), max(d['start_age'] for d in daeun) + 11)
+    all_seun_reversed = list(range(max_age-1, -1, -1))  # 큰나이→작은나이
+
+    seun_html = '<div id="seun-timeline" style="overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 0 2px;margin:4px 0;">'
+    seun_html += '<div style="display:inline-flex;flex-wrap:nowrap;gap:2px;padding:0 4px;">'
+
+    for age_i in all_seun_reversed:
+        if age_i >= len(seun):
             continue
-        age_i,sy,sg,sj = seun_range_disp[si]
-        bg_g=GAN_BG.get(sg,"#888"); tc_g=gan_fg(sg)
-        bg_j=BR_BG.get(sj,"#888"); tc_j=br_fg(sj)
-        hj_sg=hanja_gan(sg); hj_sj=hanja_ji(sj)
-        six_g=six_for_stem(ilgan,sg); six_j=six_for_branch(ilgan,sj)
-        active=(age_i==sel_su)
-        bdr='2px solid #8b6914' if active else '1px solid #c8b87a'
-        bg_card='#d4c48a' if active else '#e8e4d8'
+        sy, sg, sj = seun[age_i]
+        bg_g = GAN_BG.get(sg, "#888"); tc_g = gan_fg(sg)
+        bg_j = BR_BG.get(sj, "#888"); tc_j = br_fg(sj)
+        hj_sg = hanja_gan(sg); hj_sj = hanja_ji(sj)
+        six_g = six_for_stem(ilgan, sg); six_j = six_for_branch(ilgan, sj)
+
+        in_range = (seun_age_start <= age_i <= seun_age_end)
+        is_active = (age_i == sel_su)
         display_age = age_i + 1
-        with cols_seun[ci]:
-            st.markdown(
-                f'<div style="text-align:center;font-size:9px;color:#6b5a3e;margin-bottom:1px;white-space:nowrap">{sy}</div>'
-                f'<div style="display:flex;flex-direction:column;align-items:center;border:{bdr};border-radius:10px;background:{bg_card};padding:3px 2px;">'
-                f'<div style="font-size:9px;color:#5a3e0a;margin-bottom:1px;white-space:nowrap">{six_g}</div>'
-                f'<div style="width:30px;height:30px;border-radius:5px;background:{bg_g};color:{tc_g};display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;margin-bottom:1px">{hj_sg}</div>'
-                f'<div style="width:30px;height:30px;border-radius:5px;background:{bg_j};color:{tc_j};display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;margin-bottom:1px">{hj_sj}</div>'
-                f'<div style="font-size:9px;color:#5a3e0a;white-space:nowrap">{six_j}</div>'
-                '</div>',
-                unsafe_allow_html=True
-            )
-            if st.button(f'{display_age}', key=f'su_{age_i}', use_container_width=True):
-                st.session_state.sel_seun=age_i
-                st.session_state.sel_wolun=0
-                st.session_state.page='wolun'
-                st.rerun()
+
+        if is_active:
+            bdr = '2px solid #8b6914'
+            bg_card = '#d4c48a'
+            opacity = '1'
+        elif in_range:
+            bdr = '1.5px solid #b8a87a'
+            bg_card = '#e8e4d8'
+            opacity = '1'
+        else:
+            bdr = '1px solid #d8d0c0'
+            bg_card = '#f0ece0'
+            opacity = '0.5'
+
+        anchor = f'id="seun-{age_i}"' if is_active else ''
+        range_anchor = f'id="seun-range-start"' if age_i == seun_age_end else ''
+        use_anchor = anchor or range_anchor
+
+        seun_html += (
+            f'<div {use_anchor} style="display:flex;flex-direction:column;align-items:center;min-width:36px;opacity:{opacity};">'
+            f'<div style="font-size:8px;color:#6b5a3e;margin-bottom:1px;white-space:nowrap">{sy}</div>'
+            f'<div style="display:flex;flex-direction:column;align-items:center;border:{bdr};border-radius:8px;background:{bg_card};padding:2px 1px;">'
+            f'<div style="font-size:8px;color:#5a3e0a;margin-bottom:1px;white-space:nowrap">{six_g}</div>'
+            f'<div style="width:26px;height:26px;border-radius:4px;background:{bg_g};color:{tc_g};display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;">{hj_sg}</div>'
+            f'<div style="width:26px;height:26px;border-radius:4px;background:{bg_j};color:{tc_j};display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;margin-top:1px;">{hj_sj}</div>'
+            f'<div style="font-size:8px;color:#5a3e0a;margin-top:1px;white-space:nowrap">{six_j}</div>'
+            '</div>'
+            f'<div style="font-size:8px;color:#6b5a3e;margin-top:1px;">{display_age}</div>'
+            '</div>'
+        )
+
+    seun_html += '</div></div>'
+
+    # JS: 대운 구간 시작점으로 자동 스크롤 (중앙 정렬)
+    seun_html += '''<script>
+    (function(){
+        var el = document.getElementById('seun-range-start');
+        var container = document.getElementById('seun-timeline');
+        if(el && container){
+            var offset = el.offsetLeft - container.offsetLeft - (container.clientWidth / 2) + (el.offsetWidth * 5);
+            container.scrollLeft = Math.max(0, offset);
+        }
+    })();
+    </script>'''
+
+    st.markdown(seun_html, unsafe_allow_html=True)
+
+    # ★ 아래: 현재 대운 구간 10개 나이 버튼 (월운 이동용)
+    seun_range = []
+    for age_i in range(seun_age_start, seun_age_end + 1):
+        if age_i < len(seun):
+            sy, sg, sj = seun[age_i]
+            seun_range.append((age_i, sy, sg, sj))
+    seun_range_disp = list(reversed(seun_range))
+
+    n_btn = len(seun_range_disp)
+    if n_btn > 0:
+        cols_su = st.columns(n_btn)
+        for ci, (age_i, sy, sg, sj) in enumerate(seun_range_disp):
+            display_age = age_i + 1
+            with cols_su[ci]:
+                if st.button(f'{display_age}', key=f'su_{age_i}', use_container_width=True):
+                    st.session_state.sel_seun = age_i
+                    st.session_state.sel_wolun = 0
+                    st.session_state.page = 'wolun'
+                    st.rerun()
 
     # ★ 사용법 안내
     st.markdown(
