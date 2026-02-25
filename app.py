@@ -857,7 +857,7 @@ def render_daeun_card(age, g, j, ilgan, active, btn_key, dy_year=0):
     return st.button(f'{dy_year}', key=btn_key, use_container_width=True)
 
 def main():
-    st.set_page_config(page_title='이박사 만세력', layout='centered', page_icon='🔮', initial_sidebar_state='collapsed')
+    st.set_page_config(page_title='Four Pillars Chart & Energy Summary', layout='centered', page_icon='🔮', initial_sidebar_state='collapsed')
     st.markdown(MOBILE_CSS, unsafe_allow_html=True)
     # 모바일 핀치줌 허용
     st.markdown('<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0">', unsafe_allow_html=True)
@@ -872,9 +872,8 @@ def main():
 def page_input():
     now=datetime.now(LOCAL_TZ)
     st.markdown(
-        '<div style="text-align:center;margin:8px 0 12px;">'
-        '<div style="font-size:28px;font-weight:900;color:#8b4513;letter-spacing:2px;">🔮 사주 만세력</div>'
-        '<div style="font-size:12px;color:#a0945e;margin-top:2px;">이박사 향기품 · 진태양시 정밀 계산</div>'
+        '<div style="text-align:center;margin:4px 0 8px;">'
+        '<div style="font-size:12px;color:#a0945e;">Ruach Energy Profile · 진태양시 정밀 계산</div>'
         '</div>',
         unsafe_allow_html=True
     )
@@ -1087,7 +1086,7 @@ def page_saju():
                     sy=birth_y+i; off=(sy-4)%60
                     new_seun.append((sy,CHEONGAN[off%10],JIJI[off%12]))
                 st.session_state.saju_data['seun']=new_seun
-                st.session_state.sel_seun=du_start_age
+                st.session_state.sel_seun=du_start_age - 1
                 st.session_state.page='saju'
                 st.rerun()
 
@@ -1098,10 +1097,9 @@ def page_saju():
     du_start=du_item['start_age']
     birth_y=data['birth'][0]
 
-    # 현재 대운 구간 범위
-    if sel_du==0: seun_age_start=0
-    else: seun_age_start=du_start
-    seun_age_end=du_start+9
+    # 현재 대운 구간 범위 (start_age는 1-indexed, seun배열은 0-indexed)
+    seun_age_start = du_start - 1  # 31세 대운 → index 30
+    seun_age_end = du_start + 8    # → index 39 (31~40세)
 
     # ★ 전체 세운 타임라인 (오른쪽→왼쪽, 1세가 오른쪽)
     max_age = min(len(seun), max(d['start_age'] for d in daeun) + 11)
@@ -1156,6 +1154,7 @@ def page_saju():
             f'<div style="width:26px;height:26px;border-radius:4px;background:{bg_j};color:{tc_j};display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;margin-top:1px;">{hj_sj}</div>'
             f'<div style="font-size:8px;color:#5a3e0a;margin-top:1px;white-space:nowrap">{six_j}</div>'
             '</div>'
+            f'<div style="font-size:7px;color:#6b5a3e;margin-top:1px;">{display_age}</div>'
             '</div>'
         )
 
@@ -1191,7 +1190,9 @@ def page_saju():
     </script></body></html>'''
 
     import streamlit.components.v1 as components
-    components.html(seun_html, height=116, scrolling=False)
+    # 세운 타임라인을 대운에 밀착 (iframe 위아래 여백 제거)
+    st.markdown('<style>iframe[height="128"]{margin-top:-10px!important;margin-bottom:-10px!important;}</style>', unsafe_allow_html=True)
+    components.html(seun_html, height=128, scrolling=False)
 
     # ★ 아래: 현재 대운 구간 10개 나이 버튼 (월운 이동용)
     seun_range = []
