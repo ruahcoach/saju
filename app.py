@@ -714,7 +714,7 @@ body,.stApp{background:var(--bg)!important;color:var(--text)!important;font-fami
 .stRadio label{color:var(--text)!important;font-size:15px!important;}
 .stSelectbox label,.stCheckbox label{font-size:15px!important;}
 .stButton>button{background:linear-gradient(135deg,#c8b87a,#a0945e)!important;color:#fff!important;border:1px solid var(--acc)!important;border-radius:6px!important;width:100%!important;font-size:12px!important;font-weight:bold!important;padding:2px 0px!important;white-space:nowrap!important;overflow:hidden;min-height:0!important;height:24px!important;line-height:1!important;}
-.page-hdr{background:linear-gradient(135deg,#c8b87a,#a0945e);border-bottom:2px solid var(--acc);padding:6px;text-align:center;font-size:18px;font-weight:bold;color:#fff;letter-spacing:4px;margin-bottom:4px;}
+.page-hdr{background:linear-gradient(135deg,#c8b87a,#a0945e);border-bottom:2px solid var(--acc);padding:6px;text-align:center;font-size:18px;font-weight:bold;color:#fff;letter-spacing:4px;margin-bottom:0px;}
 .saju-wrap{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r);padding:4px 4px 2px;margin-bottom:2px;}
 .saju-table{width:100%;border-collapse:separate;border-spacing:4px;table-layout:fixed;}
 .saju-table th{font-size:13px;color:var(--sub);text-align:center;padding:2px 0;}
@@ -1190,8 +1190,8 @@ def page_saju():
 
     import streamlit.components.v1 as components
     # 세운 타임라인을 대운에 밀착
-    st.markdown('<style>div[data-testid="stVerticalBlock"]>div:has(iframe[height="106"]){margin-top:-20px!important;margin-bottom:-10px!important;}</style>', unsafe_allow_html=True)
-    components.html(seun_html, height=106, scrolling=False)
+    st.markdown('<style>div[data-testid="stVerticalBlock"]>div:has(iframe[height="124"]){margin-top:-20px!important;margin-bottom:-14px!important;}</style>', unsafe_allow_html=True)
+    components.html(seun_html, height=124, scrolling=False)
 
     # ★ 아래: 현재 대운 구간 10개 나이 버튼 (월운 이동용)
     seun_range = []
