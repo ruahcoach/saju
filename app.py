@@ -752,7 +752,7 @@ label{color:var(--text)!important;font-size:15px!important;}
 div[data-testid='stHorizontalBlock']{gap:2px!important;margin-bottom:-4px!important;}
 div[data-testid='column']{padding:0 1px!important;}
 div[data-testid='stVerticalBlock']>div{margin-bottom:-2px!important;}
-div[data-testid='stVerticalBlock']>div:has(iframe){margin-top:-6px!important;margin-bottom:-6px!important;}
+div[data-testid='stVerticalBlock']>div:has(iframe){margin-top:-2px!important;margin-bottom:-2px!important;}
 div[data-testid='stExpander']{margin-top:4px!important;}
 /* ★ 신뢰 장치 3종 스타일 */
 .tz-info-box{background:#f8f4e8;border:1px solid #d4c48a;border-radius:8px;padding:8px 10px;margin:4px 0;font-size:13px;color:var(--sub);line-height:1.6;}
@@ -871,20 +871,38 @@ def main():
 
 def page_input():
     now=datetime.now(LOCAL_TZ)
-    st.markdown('<div class="sec-title">📅 출생 정보 입력</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div style="text-align:center;margin:8px 0 12px;">'
+        '<div style="font-size:28px;font-weight:900;color:#8b4513;letter-spacing:2px;">🔮 사주 만세력</div>'
+        '<div style="font-size:12px;color:#a0945e;margin-top:2px;">이박사 향기품 · 진태양시 정밀 계산</div>'
+        '</div>',
+        unsafe_allow_html=True
+    )
+    st.markdown(
+        '<div style="background:#f8f4e8;border:1px solid #d4c48a;border-radius:10px;padding:12px 14px;margin-bottom:8px;">'
+        '<div style="font-size:13px;font-weight:bold;color:#8b4513;margin-bottom:8px;">📅 출생 정보</div>',
+        unsafe_allow_html=True
+    )
     c1,c2=st.columns(2)
     with c1: gender=st.radio('성별',['남','여'],horizontal=True)
     with c2: cal_type=st.radio('달력',['양력','음력','음력윤달'],horizontal=True)
-    city = st.selectbox("출생지", list(city_options.keys()))
-    longitude = city_options[city]
-
-    apply_solar = st.checkbox("진태양시(경도) 보정 적용", value=True)
-    show_tst = st.checkbox("🔬 정밀검증 모드 (벽시계 vs 진태양시 비교)", value=False)
-    
     birth_str=st.text_input('생년월일 (YYYYMMDD)',value=st.session_state.get('_birth_str','19840202'),max_chars=8)
     birth_time=st.text_input('출생시각 (HHMM, 모르면 0000)',value=st.session_state.get('_birth_time','0000'),max_chars=4)
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown(
+        '<div style="background:#f8f4e8;border:1px solid #d4c48a;border-radius:10px;padding:12px 14px;margin-bottom:8px;">'
+        '<div style="font-size:13px;font-weight:bold;color:#8b4513;margin-bottom:8px;">📍 출생지 · 보정 설정</div>',
+        unsafe_allow_html=True
+    )
+    city = st.selectbox("출생지", list(city_options.keys()))
+    longitude = city_options[city]
+    apply_solar = st.checkbox("진태양시(경도) 보정 적용", value=True)
+    show_tst = st.checkbox("🔬 정밀검증 모드 (벽시계 vs 진태양시 비교)", value=False)
+    st.markdown('</div>', unsafe_allow_html=True)
+
     is_leap = (cal_type == '음력윤달')
-    if st.button('🔮 사주 보기'):
+    if st.button('🔮 사주 보기', use_container_width=True):
         try:
             bs=re.sub(r'\D','',birth_str); bt=re.sub(r'\D','',birth_time)
             y=int(bs[:4]); m=int(bs[4:6]); d=int(bs[6:8])
@@ -1089,9 +1107,9 @@ def page_saju():
     max_age = min(len(seun), max(d['start_age'] for d in daeun) + 11)
     all_seun_reversed = list(range(max_age-1, -1, -1))  # 큰나이→작은나이
 
-    seun_html = '<html><body style="margin:0;padding:0;background:transparent;">'
-    seun_html += '<style>html,body{overflow:visible!important;}#seun-timeline{overflow-x:scroll!important;-webkit-overflow-scrolling:touch;}#seun-timeline::-webkit-scrollbar{height:6px;}#seun-timeline::-webkit-scrollbar-track{background:#f0ece0;border-radius:3px;}#seun-timeline::-webkit-scrollbar-thumb{background:#c8b87a;border-radius:3px;}</style>'
-    seun_html += '<div id="seun-timeline" style="overflow-x:scroll;-webkit-overflow-scrolling:touch;padding:4px 0 8px;margin:0;width:100%;">'
+    seun_html = '<html><body style="margin:0;padding:0;background:transparent;overflow-y:hidden;">'
+    seun_html += '<style>html,body{overflow-y:hidden!important;overflow-x:hidden!important;}#seun-timeline{overflow-x:scroll!important;overflow-y:hidden!important;-webkit-overflow-scrolling:touch;}#seun-timeline::-webkit-scrollbar{height:5px;}#seun-timeline::-webkit-scrollbar-track{background:#ece8d8;border-radius:3px;}#seun-timeline::-webkit-scrollbar-thumb{background:#c8b87a;border-radius:3px;}</style>'
+    seun_html += '<div id="seun-timeline" style="overflow-x:scroll;overflow-y:hidden;-webkit-overflow-scrolling:touch;padding:2px 0 10px;margin:0;width:100%;">'
     seun_html += '<div style="display:inline-flex;flex-wrap:nowrap;gap:2px;padding:0 4px;">'
 
     for age_i in all_seun_reversed:
@@ -1152,7 +1170,7 @@ def page_saju():
     </script></body></html>'''
 
     import streamlit.components.v1 as components
-    components.html(seun_html, height=120, scrolling=True)
+    components.html(seun_html, height=112, scrolling=True)
 
     # ★ 아래: 현재 대운 구간 10개 나이 버튼 (월운 이동용)
     seun_range = []
