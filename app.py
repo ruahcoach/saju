@@ -1008,15 +1008,11 @@ def page_saju():
     longitude = data.get('longitude', DEFAULT_LONGITUDE)
     apply_solar = data.get('apply_solar', True)
 
-    # ★ 표준시 라벨 표시
+    # 표준시/보정 라벨은 expander 시간보정 상세에서 표시
     tz_lbl = data.get('tz_label', '')
     calc_info = f"🔎 {tz_lbl} · 경도 {longitude:.2f}° · "
     calc_info += "진태양시 보정" if apply_solar else "표준시 기준"
 
-    st.markdown(
-        f'<div style="text-align:center;font-size:11px;color:#6b5a3e;margin:-6px 0 4px;">{calc_info}</div>',
-        unsafe_allow_html=True
-    )
     month_ji=fp['month'][1]
     day_from=data['day_from_jieqi']
     du_dir='순행' if data['forward'] else '역행'
@@ -1034,15 +1030,11 @@ def page_saju():
     dr_mission = dangryeong_item["heaven_mission"] if dangryeong_item else "-"
     dr_period = dangryeong_item["period"] if dangryeong_item else "-"
 
+    # 격 박스: 윗줄만 (사령/당령/절입일은 expander로 이동)
     geok_box_html = (
         '<div class="geok-box">'
         f'<div class="geok-name">格 {geok} &nbsp;&nbsp;<span style="font-size:11px;color:var(--sub);font-weight:normal;">{why}</span>'
         f'&nbsp;&nbsp;·&nbsp;&nbsp;<span style="font-size:11px;color:var(--sub);">대운 {du_age}세 {du_dir}</span>'
-        '</div>'
-        '<div class="geok-why" style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(200,184,122,.4);">'
-        f'<b>사령</b>: {saryeong_gan}({saryeong_six}) · {saryeong_period} · {month_ji}월 절입+{day_from}일'
-        f'<br><b>당령</b>: {dr_mission} · {dr_period}<br>{dr_desc}'
-        f'<br><b>절입일</b>: 이전 {prev_str} / 이후 {next_str}'
         '</div>'
         '</div>'
     )
@@ -1124,7 +1116,7 @@ def page_saju():
     # ★ 사용법 안내
     st.markdown(
         '<div style="text-align:center;font-size:11px;color:#9a8a6a;margin:6px 0 4px;line-height:1.5;">'
-        '💡 <b>년도/나이</b> 버튼 → 월운 보기 · 월운에서 <b>월</b> 버튼 → 일운(달력) 보기'
+        '💡 <b>년도</b>버튼 → 세운 보기 · <b>나이</b>버튼 → 월운 보기 · 월운에서 <b>월</b>버튼 → 일운(달력) 보기'
         '</div>',
         unsafe_allow_html=True
     )
@@ -1141,18 +1133,34 @@ def page_saju():
 
     # ★ 내 사주 해석 보기 (expander)
     with st.expander("📊 내 사주 해석 보기", expanded=False):
-        # ① 격 카드 상세 (강점/성장팁/칭찬)
+        # ① 사령 / 당령 / 절입일
+        saryeong_html = (
+            '<div class="geok-box" style="margin-bottom:10px;">'
+            '<div class="geok-why">'
+            f'<b>사령</b>: {saryeong_gan}({saryeong_six}) · {saryeong_period} · {month_ji}월 절입+{day_from}일'
+            f'<br><b>당령</b>: {dr_mission} · {dr_period}<br>{dr_desc}'
+            f'<br><b>절입일</b>: 이전 {prev_str} / 이후 {next_str}'
+            '</div>'
+            '</div>'
+        )
+        st.markdown(saryeong_html, unsafe_allow_html=True)
+
+        # ② 격 카드 상세 (강점/성장팁/칭찬)
         geok_card2 = find_geok_card(geok)
         if geok_card2:
             from datetime import date as _d
             user_age = _d.today().year - birth_year
             st.markdown(render_geok_card_html(geok_card2, show_detail=True, user_age=user_age), unsafe_allow_html=True)
 
-        # ② 법정시 / 보정값 상세
+        # ③ 법정시 / 보정값 상세 (표준시 라벨 포함)
         corr = data.get('corr_detail')
         eot = data.get('eot_min', 0)
         if corr:
             st.markdown('<div class="sec-title">🕐 시간 보정 상세</div>', unsafe_allow_html=True)
+            st.markdown(
+                f'<div style="text-align:center;font-size:11px;color:#6b5a3e;margin-bottom:6px;padding:4px;background:#f5f0e0;border-radius:6px;">{calc_info}</div>',
+                unsafe_allow_html=True
+            )
             st.markdown(render_correction_html(corr, eot), unsafe_allow_html=True)
 
         # ③ 경계 경고 (해당될 때만)
