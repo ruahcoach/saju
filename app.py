@@ -857,7 +857,7 @@ def render_daeun_card(age, g, j, ilgan, active, btn_key, dy_year=0):
     return st.button(f'{dy_year}', key=btn_key, use_container_width=True)
 
 def main():
-    st.set_page_config(page_title='Four Pillars Chart & Energy Summary', layout='centered', page_icon='🔮', initial_sidebar_state='collapsed')
+    st.set_page_config(page_title="Dr. Lee's Birth Energy Pattern Analysis", layout='centered', page_icon='🔮', initial_sidebar_state='collapsed')
     st.markdown(MOBILE_CSS, unsafe_allow_html=True)
     # 모바일 핀치줌 허용
     st.markdown('<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0">', unsafe_allow_html=True)
@@ -1112,7 +1112,7 @@ def page_saju():
     seun_html += '#seun-timeline::-webkit-scrollbar-track{background:#ece8d8;border-radius:4px;}'
     seun_html += '#seun-timeline::-webkit-scrollbar-thumb{background:#c8b87a;border-radius:4px;min-width:40px;}'
     seun_html += '</style>'
-    seun_html += '<div id="seun-timeline" style="overflow-x:scroll;overflow-y:hidden;-webkit-overflow-scrolling:touch;padding:2px 0 4px;margin:0;width:100%;">'
+    seun_html += '<div id="seun-timeline" style="overflow-x:scroll;overflow-y:hidden;-webkit-overflow-scrolling:touch;padding:0 0 2px;margin:0;width:100%;">'
     seun_html += '<div style="display:inline-flex;flex-wrap:nowrap;gap:2px;padding:0 4px;">'
 
     for age_i in all_seun_reversed:
@@ -1159,11 +1159,10 @@ def page_saju():
         )
 
     seun_html += '</div></div>'
-    # 스크롤 위치 표시 바 (스크롤 영역 밖)
-    seun_html += '<div style="margin:3px 8px 0;height:4px;background:#ece8d8;border-radius:2px;position:relative;">'
-    seun_html += '<div id="scroll-indicator" style="height:4px;background:#c8b87a;border-radius:2px;width:20%;position:absolute;left:0;transition:left 0.1s;"></div>'
+    # 스크롤 위치 표시 바
+    seun_html += '<div style="margin:2px 8px 0;height:3px;background:#ece8d8;border-radius:2px;position:relative;">'
+    seun_html += '<div id="scroll-indicator" style="height:3px;background:#c8b87a;border-radius:2px;width:20%;position:absolute;left:0;transition:left 0.1s;"></div>'
     seun_html += '</div>'
-    seun_html += '<div style="text-align:center;font-size:9px;color:#b0a080;margin-top:1px;">◀ 좌우로 밀어서 전체 세운 보기 ▶</div>'
 
     # JS: 대운 구간 시작점으로 자동 스크롤 + 스크롤 인디케이터 연동
     seun_html += '''<script>
@@ -1190,9 +1189,9 @@ def page_saju():
     </script></body></html>'''
 
     import streamlit.components.v1 as components
-    # 세운 타임라인을 대운에 밀착 (iframe 위아래 여백 제거)
-    st.markdown('<style>iframe[height="128"]{margin-top:-10px!important;margin-bottom:-10px!important;}</style>', unsafe_allow_html=True)
-    components.html(seun_html, height=128, scrolling=False)
+    # 세운 타임라인을 대운에 밀착
+    st.markdown('<style>div[data-testid="stVerticalBlock"]>div:has(iframe[height="106"]){margin-top:-20px!important;margin-bottom:-10px!important;}</style>', unsafe_allow_html=True)
+    components.html(seun_html, height=106, scrolling=False)
 
     # ★ 아래: 현재 대운 구간 10개 나이 버튼 (월운 이동용)
     seun_range = []
