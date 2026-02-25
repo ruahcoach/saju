@@ -744,8 +744,10 @@ body,.stApp{background:var(--bg)!important;color:var(--text)!important;font-fami
 .geok-tag{display:inline-block;background:#f0e8c8;color:#7a5a1a;border:1px solid #c8a84a;border-radius:20px;padding:3px 10px;font-size:12px;margin:2px;}
 .ai-section{background:linear-gradient(135deg,#fff0f5,#ffe4ee);border:1px solid #f4a0c0;border-radius:12px;padding:10px;margin:6px 0 2px;}
 .bottom-btns{display:flex;gap:6px;margin:4px 0 4px;}
-.bottom-btn-saju{flex:1;background:linear-gradient(135deg,#c8b87a,#a0945e);border:none;border-radius:10px;padding:10px 4px;text-align:center;color:#fff;font-size:13px;font-weight:bold;text-decoration:none;display:block;}
-.bottom-btn-ai{flex:1;background:linear-gradient(135deg,#f0c4dc,#e8a0c4);border:none;border-radius:10px;padding:10px 4px;text-align:center;color:#2c3e7a;font-size:13px;font-weight:bold;text-decoration:none;display:block;}
+.bottom-btns a{flex:1;border:none;border-radius:10px;padding:10px 4px;text-align:center;font-size:13px;font-weight:bold;text-decoration:none!important;display:block;}
+.bottom-btn-ai{background:linear-gradient(135deg,#a8d8ea,#82c4d8);color:#1a4a5e!important;}
+.bottom-btn-yt{background:linear-gradient(135deg,#f5d5a0,#e8bf78);color:#6b4a14!important;}
+.bottom-btn-chat{background:linear-gradient(135deg,#c4e0b8,#a0cc8e);color:#2a5a1e!important;}
 label{color:var(--text)!important;font-size:15px!important;}
 div[data-testid='stHorizontalBlock']{gap:2px!important;margin-bottom:-4px!important;}
 div[data-testid='column']{padding:0 1px!important;}
@@ -1003,9 +1005,14 @@ def page_saju():
     hj_yg=hanja_gan(yg); hj_yj=hanja_ji(yj)
     hj_mg=hanja_gan(mg); hj_mj=hanja_ji(mj)
     hj_dg=hanja_gan(dg); hj_dj=hanja_ji(dj)
-    st.markdown(f'<div class="today-banner">오늘 {now.strftime("%Y.%m.%d")} · {hj_yg}{hj_yj}년 {hj_mg}{hj_mj}월 {hj_dg}{hj_dj}일</div>', unsafe_allow_html=True)
     b=data['birth']; birth_display=f'{b[0]}년 {b[1]}월 {b[2]}일 {b[3]:02d}:{b[4]:02d}'
-    st.markdown(f'<div style="text-align:center;font-size:12px;color:#8b6914;margin:-4px 0 2px;padding:1px 0;">입력 생년월일시 · 서기 {birth_display}</div>', unsafe_allow_html=True)
+    st.markdown(
+        f'<div class="today-banner">'
+        f'오늘 {now.strftime("%Y.%m.%d")} · {hj_yg}{hj_yj}년 {hj_mg}{hj_mj}월 {hj_dg}{hj_dj}일'
+        f'<br><span style="font-size:11px;color:#8b6914;">입력 생년월일시 · 서기 {birth_display}</span>'
+        f'</div>',
+        unsafe_allow_html=True
+    )
 
     st.markdown(render_saju_table(fp,ilgan), unsafe_allow_html=True)
     longitude = data.get('longitude', DEFAULT_LONGITUDE)
@@ -1083,7 +1090,8 @@ def page_saju():
     all_seun_reversed = list(range(max_age-1, -1, -1))  # 큰나이→작은나이
 
     seun_html = '<html><body style="margin:0;padding:0;background:transparent;overflow:hidden;">'
-    seun_html += '<div id="seun-timeline" style="overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 0 2px;margin:0;">'
+    seun_html += '<style>#seun-timeline::-webkit-scrollbar{height:6px;}#seun-timeline::-webkit-scrollbar-track{background:#f0ece0;border-radius:3px;}#seun-timeline::-webkit-scrollbar-thumb{background:#c8b87a;border-radius:3px;}</style>'
+    seun_html += '<div id="seun-timeline" style="overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 0 6px;margin:0;">'
     seun_html += '<div style="display:inline-flex;flex-wrap:nowrap;gap:2px;padding:0 4px;">'
 
     for age_i in all_seun_reversed:
@@ -1144,7 +1152,7 @@ def page_saju():
     </script></body></html>'''
 
     import streamlit.components.v1 as components
-    components.html(seun_html, height=105, scrolling=False)
+    components.html(seun_html, height=115, scrolling=False)
 
     # ★ 아래: 현재 대운 구간 10개 나이 버튼 (월운 이동용)
     seun_range = []
@@ -1178,8 +1186,8 @@ def page_saju():
     bottom_html = (
         '<div class="bottom-btns">'
         f'<a href="{gpt_url}" target="_blank" class="bottom-btn-ai">🤖 AI무료상담</a>'
-        '<a href="https://www.youtube.com/@psycologysalon" target="_blank" class="bottom-btn-saju" style="text-decoration:none;">🎥 명리심리 유튜브</a>'
-        '<a href="https://open.kakao.com/o/sWJUYGDh" target="_blank" class="bottom-btn-saju" style="text-decoration:none;">💬 오픈채팅방</a>'
+        '<a href="https://www.youtube.com/@psycologysalon" target="_blank" class="bottom-btn-yt">🎥 명리심리 유튜브</a>'
+        '<a href="https://open.kakao.com/o/sWJUYGDh" target="_blank" class="bottom-btn-chat">💬 오픈채팅방</a>'
         '</div>'
     )
     st.markdown(bottom_html, unsafe_allow_html=True)
@@ -1282,8 +1290,8 @@ def page_wolun():
     bottom_html = (
         '<div class="bottom-btns">'
         f'<a href="{gpt_url}" target="_blank" class="bottom-btn-ai">🤖 AI무료상담</a>'
-        '<a href="https://www.youtube.com/@psycologysalon" target="_blank" class="bottom-btn-saju" style="text-decoration:none;">🎥 명리심리 유튜브</a>'
-        '<a href="https://open.kakao.com/o/sWJUYGDh" target="_blank" class="bottom-btn-saju" style="text-decoration:none;">💬 오픈채팅방</a>'
+        '<a href="https://www.youtube.com/@psycologysalon" target="_blank" class="bottom-btn-yt">🎥 명리심리 유튜브</a>'
+        '<a href="https://open.kakao.com/o/sWJUYGDh" target="_blank" class="bottom-btn-chat">💬 오픈채팅방</a>'
         '</div>'
     )
     st.markdown(bottom_html, unsafe_allow_html=True)
@@ -1384,8 +1392,8 @@ def page_ilun():
     bottom_html = (
         '<div class="bottom-btns">'
         f'<a href="{gpt_url}" target="_blank" class="bottom-btn-ai">🤖 AI무료상담</a>'
-        '<a href="https://www.youtube.com/@psycologysalon" target="_blank" class="bottom-btn-saju" style="text-decoration:none;">🎥 명리심리 유튜브</a>'
-        '<a href="https://open.kakao.com/o/sWJUYGDh" target="_blank" class="bottom-btn-saju" style="text-decoration:none;">💬 오픈채팅방</a>'
+        '<a href="https://www.youtube.com/@psycologysalon" target="_blank" class="bottom-btn-yt">🎥 명리심리 유튜브</a>'
+        '<a href="https://open.kakao.com/o/sWJUYGDh" target="_blank" class="bottom-btn-chat">💬 오픈채팅방</a>'
         '</div>'
     )
     st.markdown(bottom_html, unsafe_allow_html=True)
