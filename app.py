@@ -709,26 +709,26 @@ MOBILE_CSS = """
 html{font-size:16px;}
 body,.stApp{background:var(--bg)!important;color:var(--text)!important;font-family:"Noto Serif KR","Malgun Gothic",serif;-webkit-text-size-adjust:100%;}
 #MainMenu,footer,header{visibility:hidden;}
-.block-container{padding:0.5rem!important;max-width:480px!important;margin:0 auto!important;}
+.block-container{padding:0.3rem 0.5rem!important;max-width:480px!important;margin:0 auto!important;}
 .stTextInput input,.stNumberInput input{background:#fff!important;color:var(--text)!important;border:1px solid var(--bdr)!important;border-radius:8px!important;font-size:16px!important;}
 .stRadio label{color:var(--text)!important;font-size:15px!important;}
 .stSelectbox label,.stCheckbox label{font-size:15px!important;}
 .stButton>button{background:linear-gradient(135deg,#c8b87a,#a0945e)!important;color:#fff!important;border:1px solid var(--acc)!important;border-radius:6px!important;width:100%!important;font-size:12px!important;font-weight:bold!important;padding:2px 0px!important;white-space:nowrap!important;overflow:hidden;min-height:0!important;height:24px!important;line-height:1!important;}
-.page-hdr{background:linear-gradient(135deg,#c8b87a,#a0945e);border-bottom:2px solid var(--acc);padding:12px;text-align:center;font-size:20px;font-weight:bold;color:#fff;letter-spacing:4px;margin-bottom:12px;}
-.saju-wrap{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r);padding:8px 4px 4px;margin-bottom:6px;}
+.page-hdr{background:linear-gradient(135deg,#c8b87a,#a0945e);border-bottom:2px solid var(--acc);padding:6px;text-align:center;font-size:18px;font-weight:bold;color:#fff;letter-spacing:4px;margin-bottom:4px;}
+.saju-wrap{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r);padding:4px 4px 2px;margin-bottom:2px;}
 .saju-table{width:100%;border-collapse:separate;border-spacing:4px;table-layout:fixed;}
-.saju-table th{font-size:13px;color:var(--sub);text-align:center;padding:4px 0;}
-.saju-table .lb td{font-size:12px;color:var(--sub);text-align:center;padding:2px 0;}
+.saju-table th{font-size:13px;color:var(--sub);text-align:center;padding:2px 0;}
+.saju-table .lb td{font-size:12px;color:var(--sub);text-align:center;padding:1px 0;}
 .gcell,.jcell{text-align:center;padding:0;}
-.gcell div,.jcell div{display:flex;align-items:center;justify-content:center;width:100%;height:48px;border-radius:8px;font-weight:900;font-size:26px;border:1px solid rgba(0,0,0,.15);margin:1px auto;}
-.sec-title{font-size:15px;color:var(--acc);font-weight:bold;padding:6px 8px;border-left:3px solid var(--acc);margin:12px 0 8px;}
-.geok-box{background:rgba(200,184,122,.2);border:1px solid var(--acc);border-radius:8px;padding:12px 14px;margin:8px 0;font-size:13px;color:var(--text);}
-.geok-name{font-size:17px;font-weight:900;color:#8b4513;margin-bottom:4px;}
+.gcell div,.jcell div{display:flex;align-items:center;justify-content:center;width:100%;height:44px;border-radius:8px;font-weight:900;font-size:26px;border:1px solid rgba(0,0,0,.15);margin:1px auto;}
+.sec-title{font-size:15px;color:var(--acc);font-weight:bold;padding:4px 8px;border-left:3px solid var(--acc);margin:6px 0 4px;}
+.geok-box{background:rgba(200,184,122,.2);border:1px solid var(--acc);border-radius:8px;padding:6px 10px;margin:2px 0;font-size:13px;color:var(--text);}
+.geok-name{font-size:17px;font-weight:900;color:#8b4513;margin-bottom:2px;}
 .geok-why{font-size:12px;color:var(--sub);line-height:1.5;}
-.today-banner{background:linear-gradient(135deg,#f5f0e8,#ede0c4);border:1px solid var(--acc);border-radius:8px;padding:8px 12px;margin-bottom:8px;font-size:14px;color:var(--sub);text-align:center;}
-.sel-info{background:var(--card);border:1px solid var(--acc);border-radius:8px;padding:8px 12px;margin-bottom:8px;font-size:14px;color:var(--text);text-align:center;}
-.cal-wrap{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden;margin-bottom:10px;}
-.cal-header{background:#c8b87a;text-align:center;padding:10px;font-size:16px;color:#fff;font-weight:bold;}
+.today-banner{background:linear-gradient(135deg,#f5f0e8,#ede0c4);border:1px solid var(--acc);border-radius:8px;padding:4px 10px;margin-bottom:2px;font-size:13px;color:var(--sub);text-align:center;}
+.sel-info{background:var(--card);border:1px solid var(--acc);border-radius:8px;padding:4px 10px;margin-bottom:4px;font-size:14px;color:var(--text);text-align:center;}
+.cal-wrap{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden;margin-bottom:6px;}
+.cal-header{background:#c8b87a;text-align:center;padding:8px;font-size:16px;color:#fff;font-weight:bold;}
 .cal-table{width:100%;border-collapse:collapse;}
 .cal-table th{background:#d4c48a;color:#5a3e0a;font-size:12px;text-align:center;padding:5px 2px;border:1px solid var(--bdr);}
 .cal-table td{text-align:center;padding:3px 1px;border:1px solid var(--bdr);font-size:12px;color:var(--text);vertical-align:top;min-width:42px;height:80px;}
@@ -742,18 +742,21 @@ body,.stApp{background:var(--bg)!important;color:var(--text)!important;font-fami
 .geok-card-oneliner{font-size:13px;color:var(--sub);line-height:1.5;margin-top:4px;}
 .geok-card-detail{background:#faf6ed;border:1px solid #d4b86a;border-radius:10px;padding:14px 16px;margin:4px 0 8px;font-size:14px;color:var(--text);line-height:1.7;}
 .geok-tag{display:inline-block;background:#f0e8c8;color:#7a5a1a;border:1px solid #c8a84a;border-radius:20px;padding:3px 10px;font-size:12px;margin:2px;}
-.ai-section{background:linear-gradient(135deg,#fff0f5,#ffe4ee);border:1px solid #f4a0c0;border-radius:12px;padding:14px;margin:12px 0 4px;}
-.bottom-btns{display:flex;gap:8px;margin:14px 0 8px;}
-.bottom-btn-saju{flex:1;background:linear-gradient(135deg,#c8b87a,#a0945e);border:none;border-radius:10px;padding:14px 6px;text-align:center;color:#fff;font-size:14px;font-weight:bold;text-decoration:none;display:block;}
-.bottom-btn-ai{flex:1;background:linear-gradient(135deg,#f0c4dc,#e8a0c4);border:none;border-radius:10px;padding:14px 6px;text-align:center;color:#2c3e7a;font-size:14px;font-weight:bold;text-decoration:none;display:block;}
+.ai-section{background:linear-gradient(135deg,#fff0f5,#ffe4ee);border:1px solid #f4a0c0;border-radius:12px;padding:10px;margin:6px 0 2px;}
+.bottom-btns{display:flex;gap:6px;margin:4px 0 4px;}
+.bottom-btn-saju{flex:1;background:linear-gradient(135deg,#c8b87a,#a0945e);border:none;border-radius:10px;padding:10px 4px;text-align:center;color:#fff;font-size:13px;font-weight:bold;text-decoration:none;display:block;}
+.bottom-btn-ai{flex:1;background:linear-gradient(135deg,#f0c4dc,#e8a0c4);border:none;border-radius:10px;padding:10px 4px;text-align:center;color:#2c3e7a;font-size:13px;font-weight:bold;text-decoration:none;display:block;}
 label{color:var(--text)!important;font-size:15px!important;}
-div[data-testid='stHorizontalBlock']{gap:4px!important;}
-div[data-testid='column']{padding:0 2px!important;}
+div[data-testid='stHorizontalBlock']{gap:2px!important;margin-bottom:-4px!important;}
+div[data-testid='column']{padding:0 1px!important;}
+div[data-testid='stVerticalBlock']>div{margin-bottom:-2px!important;}
+div[data-testid='stVerticalBlock']>div:has(iframe){margin-top:-6px!important;margin-bottom:-6px!important;}
+div[data-testid='stExpander']{margin-top:4px!important;}
 /* ★ 신뢰 장치 3종 스타일 */
-.tz-info-box{background:#f8f4e8;border:1px solid #d4c48a;border-radius:8px;padding:10px 12px;margin:6px 0;font-size:13px;color:var(--sub);line-height:1.6;}
+.tz-info-box{background:#f8f4e8;border:1px solid #d4c48a;border-radius:8px;padding:8px 10px;margin:4px 0;font-size:13px;color:var(--sub);line-height:1.6;}
 .tz-info-box b{color:var(--text);}
-.boundary-warn{background:#fff3e0;border:1px solid #f0a030;border-radius:8px;padding:10px 12px;margin:6px 0;font-size:13px;color:#8b4500;line-height:1.5;}
-.tst-compare{background:#f0f4ff;border:1px solid #90a0d0;border-radius:8px;padding:10px 12px;margin:6px 0;font-size:13px;color:#2a3060;line-height:1.6;}
+.boundary-warn{background:#fff3e0;border:1px solid #f0a030;border-radius:8px;padding:8px 10px;margin:4px 0;font-size:13px;color:#8b4500;line-height:1.5;}
+.tst-compare{background:#f0f4ff;border:1px solid #90a0d0;border-radius:8px;padding:8px 10px;margin:4px 0;font-size:13px;color:#2a3060;line-height:1.6;}
 </style>
 """
 
@@ -840,7 +843,7 @@ def render_daeun_card(age, g, j, ilgan, active, btn_key, dy_year=0):
     bg_card='#d4c48a' if active else '#e8e4d8'
     six_g=six_for_stem(ilgan,g); six_j=six_for_branch(ilgan,j)
     st.markdown(
-        f'<div style="text-align:center;font-size:10px;color:#6b5a3e;margin-bottom:1px">{age}세</div>'
+        f'<div style="text-align:center;font-size:10px;color:#6b5a3e;margin-bottom:0px">{age}세</div>'
         f'<div style="display:flex;flex-direction:column;align-items:center;border:{bdr};border-radius:10px;background:{bg_card};padding:3px 2px;">'
         f'<div style="font-size:9px;color:#5a3e0a;margin-bottom:1px;white-space:nowrap">{six_g}</div>'
         f'<div style="width:30px;height:30px;border-radius:5px;background:{bg_g};color:{tc_g};display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;margin-bottom:1px">{hj_g}</div>'
@@ -1002,7 +1005,7 @@ def page_saju():
     hj_dg=hanja_gan(dg); hj_dj=hanja_ji(dj)
     st.markdown(f'<div class="today-banner">오늘 {now.strftime("%Y.%m.%d")} · {hj_yg}{hj_yj}년 {hj_mg}{hj_mj}월 {hj_dg}{hj_dj}일</div>', unsafe_allow_html=True)
     b=data['birth']; birth_display=f'{b[0]}년 {b[1]}월 {b[2]}일 {b[3]:02d}:{b[4]:02d}'
-    st.markdown(f'<div style="text-align:center;font-size:12px;color:#8b6914;margin:-4px 0 6px;padding:2px 0;">입력 생년월일시 · 서기 {birth_display}</div>', unsafe_allow_html=True)
+    st.markdown(f'<div style="text-align:center;font-size:12px;color:#8b6914;margin:-4px 0 2px;padding:1px 0;">입력 생년월일시 · 서기 {birth_display}</div>', unsafe_allow_html=True)
 
     st.markdown(render_saju_table(fp,ilgan), unsafe_allow_html=True)
     longitude = data.get('longitude', DEFAULT_LONGITUDE)
@@ -1079,7 +1082,8 @@ def page_saju():
     max_age = min(len(seun), max(d['start_age'] for d in daeun) + 11)
     all_seun_reversed = list(range(max_age-1, -1, -1))  # 큰나이→작은나이
 
-    seun_html = '<div id="seun-timeline" style="overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 0 2px;margin:4px 0;">'
+    seun_html = '<html><body style="margin:0;padding:0;background:transparent;overflow:hidden;">'
+    seun_html += '<div id="seun-timeline" style="overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 0 2px;margin:0;">'
     seun_html += '<div style="display:inline-flex;flex-wrap:nowrap;gap:2px;padding:0 4px;">'
 
     for age_i in all_seun_reversed:
@@ -1137,9 +1141,10 @@ def page_saju():
             container.scrollLeft = Math.max(0, offset);
         }
     })();
-    </script>'''
+    </script></body></html>'''
 
-    st.markdown(seun_html, unsafe_allow_html=True)
+    import streamlit.components.v1 as components
+    components.html(seun_html, height=105, scrolling=False)
 
     # ★ 아래: 현재 대운 구간 10개 나이 버튼 (월운 이동용)
     seun_range = []
@@ -1163,7 +1168,7 @@ def page_saju():
 
     # ★ 사용법 안내
     st.markdown(
-        '<div style="text-align:center;font-size:11px;color:#9a8a6a;margin:6px 0 4px;line-height:1.5;">'
+        '<div style="text-align:center;font-size:11px;color:#9a8a6a;margin:2px 0 2px;line-height:1.5;">'
         '💡 <b>년도</b>버튼 → 세운 보기 · <b>나이</b>버튼 → 월운 보기 · 월운에서 <b>월</b>버튼 → 일운(달력) 보기'
         '</div>',
         unsafe_allow_html=True
